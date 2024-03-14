@@ -23,12 +23,7 @@ test('it adds custom text to the transaction logs', async (t) => {
   const signature = await pipe(
     await createDefaultTransaction(client, payer),
     (tx) => appendTransactionInstruction(addMemo, tx),
-    // FIXME: Store fee payer as signer in the transaction.
-    async (tx) => {
-      const [signatures] = await payer.signTransactions([tx]);
-      return { ...tx, signatures };
-    },
-    async (tx) => signAndSendTransaction(client, await tx)
+    async (tx) => signAndSendTransaction(client, tx)
   );
 
   // Then the instruction data contains our memo.
