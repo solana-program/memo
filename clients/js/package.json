@@ -1,17 +1,17 @@
 {
   "name": "@solana-program/memo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "JavaScript client for the Memo program",
   "sideEffects": false,
-  "module": "./dist/src/index.mjs",
-  "main": "./dist/src/index.js",
+  "module": "./dist/src/index.js",
+  "main": "./dist/src/index.cjs",
   "types": "./dist/types/src/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
       "types": "./dist/types/src/index.d.ts",
-      "import": "./dist/src/index.mjs",
-      "require": "./dist/src/index.js"
+      "import": "./dist/src/index.js",
+      "require": "./dist/src/index.cjs"
     }
   },
   "files": [
