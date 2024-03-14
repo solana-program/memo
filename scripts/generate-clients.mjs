@@ -1,62 +1,12 @@
 #!/usr/bin/env zx
 import "zx/globals";
 import * as k from "@metaplex-foundation/kinobi";
-import { getAllProgramIdls } from "./utils.mjs";
+import { workingDirectory } from "./utils.mjs";
 
 // Instanciate Kinobi.
-const kinobi = k.createFromIdls(getAllProgramIdls());
-
-// Update programs.
-kinobi.update(
-  k.updateProgramsVisitor({
-    "solanaMemoProgram": { name: "memo" },
-  })
-);
-
-// Update accounts.
-kinobi.update(
-  k.updateAccountsVisitor({
-    counter: {
-      seeds: [
-        k.constantPdaSeedNodeFromString("counter"),
-        k.variablePdaSeedNode(
-          "authority",
-          k.publicKeyTypeNode(),
-          "The authority of the counter account"
-        ),
-      ],
-    },
-  })
-);
-
-// Update instructions.
-kinobi.update(
-  k.updateInstructionsVisitor({
-    create: {
-      byteDeltas: [k.instructionByteDeltaNode(k.accountLinkNode("counter"))],
-      accounts: {
-        counter: { defaultValue: k.pdaValueNode("counter") },
-        payer: { defaultValue: k.accountValueNode("authority") },
-      },
-    },
-    increment: {
-      accounts: {
-        counter: { defaultValue: k.pdaValueNode("counter") },
-      },
-      arguments: {
-        amount: { defaultValue: k.noneValueNode() },
-      },
-    },
-  })
-);
-
-// Set account discriminators.
-const key = (name) => ({ field: "key", value: k.enumValueNode("Key", name) });
-kinobi.update(
-  k.setAccountDiscriminatorFromFieldVisitor({
-    counter: key("counter"),
-  })
-);
+const kinobi = k.createFromIdls([
+  path.join(workingDirectory, "program", "idl.json"),
+]);
 
 // Render JavaScript.
 const jsClient = path.join(__dirname, "..", "clients", "js");
