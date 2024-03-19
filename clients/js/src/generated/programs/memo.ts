@@ -11,10 +11,10 @@ import { Program } from '@solana/programs';
 import { ParsedAddMemoInstruction } from '../instructions';
 
 export const MEMO_PROGRAM_ADDRESS =
-  'Memo1UhkJRfHyvLMcVucJwxXeuD728EqVDDwQDxFMNo' as Address<'Memo1UhkJRfHyvLMcVucJwxXeuD728EqVDDwQDxFMNo'>;
+  'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr' as Address<'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'>;
 
 export type MemoProgram =
-  Program<'Memo1UhkJRfHyvLMcVucJwxXeuD728EqVDDwQDxFMNo'>;
+  Program<'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'>;
 
 export function getMemoProgram(): MemoProgram {
   return {
@@ -28,7 +28,7 @@ export enum MemoInstruction {
 }
 
 export type ParsedMemoInstruction<
-  TProgram extends string = 'Memo1UhkJRfHyvLMcVucJwxXeuD728EqVDDwQDxFMNo'
+  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'
 > =
   | {
       instructionType: MemoInstruction.AddMemo;
