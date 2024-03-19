@@ -28,8 +28,7 @@ export enum MemoInstruction {
 }
 
 export type ParsedMemoInstruction<
-  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'
-> =
-  | {
-      instructionType: MemoInstruction.AddMemo;
-    } & ParsedAddMemoInstruction<TProgram>;
+  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
+> = {
+  instructionType: MemoInstruction.AddMemo;
+} & ParsedAddMemoInstruction<TProgram>;

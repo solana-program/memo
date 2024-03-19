@@ -26,14 +26,14 @@ import {
 
 export type AddMemoInstruction<
   TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
-  TRemainingAccounts extends Array<IAccountMeta<string>> = []
+  TRemainingAccounts extends Array<IAccountMeta<string>> = [],
 > = IInstruction<TProgram> &
   IInstructionWithData<Uint8Array> &
   IInstructionWithAccounts<TRemainingAccounts>;
 
 export type AddMemoInstructionWithSigners<
   TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
-  TRemainingAccounts extends Array<IAccountMeta<string>> = []
+  TRemainingAccounts extends Array<IAccountMeta<string>> = [],
 > = IInstruction<TProgram> &
   IInstructionWithData<Uint8Array> &
   IInstructionWithAccounts<TRemainingAccounts>;
@@ -69,10 +69,10 @@ export type AddMemoInputWithSigners = {
 };
 
 export function getAddMemoInstruction<
-  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'
+  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
 >(input: AddMemoInputWithSigners): AddMemoInstructionWithSigners<TProgram>;
 export function getAddMemoInstruction<
-  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'
+  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
 >(input: AddMemoInput): AddMemoInstruction<TProgram>;
 export function getAddMemoInstruction(input: AddMemoInput): IInstruction {
   // Program address.
@@ -92,7 +92,7 @@ export function getAddMemoInstruction(input: AddMemoInput): IInstruction {
 
 export function getAddMemoInstructionRaw<
   TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
-  TRemainingAccounts extends Array<IAccountMeta<string>> = []
+  TRemainingAccounts extends Array<IAccountMeta<string>> = [],
 >(
   args: AddMemoInstructionDataArgs,
   programAddress: Address<TProgram> = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr' as Address<TProgram>,
@@ -106,7 +106,7 @@ export function getAddMemoInstructionRaw<
 }
 
 export type ParsedAddMemoInstruction<
-  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'
+  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
 > = {
   programAddress: Address<TProgram>;
   data: AddMemoInstructionData;
