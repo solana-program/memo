@@ -74,9 +74,7 @@ export function getAddMemoInstruction<
 export function getAddMemoInstruction<
   TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'
 >(input: AddMemoInput): AddMemoInstruction<TProgram>;
-export function getAddMemoInstruction<
-  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'
->(input: AddMemoInput): IInstruction {
+export function getAddMemoInstruction(input: AddMemoInput): IInstruction {
   // Program address.
   const programAddress =
     'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr' as Address<'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'>;
