@@ -33,6 +33,8 @@ test('it adds custom text to the transaction logs', async (t) => {
   const instructionDataBase58 =
     result!.transaction.message.instructions[0].data;
   const instructionDataBytes = getBase58Encoder().encode(instructionDataBase58);
-  const instructionMemo = getStringDecoder().decode(instructionDataBytes);
+  const instructionMemo = getStringDecoder({ size: 'variable' }).decode(
+    instructionDataBytes
+  );
   t.is(instructionMemo, 'Hello world!');
 });
