@@ -39,11 +39,11 @@ export type AddMemoInstructionData = { memo: string };
 export type AddMemoInstructionDataArgs = AddMemoInstructionData;
 
 export function getAddMemoInstructionDataEncoder(): Encoder<AddMemoInstructionDataArgs> {
-  return getStructEncoder([['memo', getStringEncoder()]]);
+  return getStructEncoder([['memo', getStringEncoder({ size: 'variable' })]]);
 }
 
 export function getAddMemoInstructionDataDecoder(): Decoder<AddMemoInstructionData> {
-  return getStructDecoder([['memo', getStringDecoder()]]);
+  return getStructDecoder([['memo', getStringDecoder({ size: 'variable' })]]);
 }
 
 export function getAddMemoInstructionDataCodec(): Codec<

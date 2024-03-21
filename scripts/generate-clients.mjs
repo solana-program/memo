@@ -12,6 +12,11 @@ const kinobi = k.createFromIdls([
 kinobi.update(
   k.updateInstructionsVisitor({
     addMemo: {
+      arguments: {
+        memo: {
+          type: k.stringTypeNode({ size: k.remainderSizeNode() }),
+        },
+      },
       remainingAccounts: [
         k.instructionRemainingAccountsNode(k.argumentValueNode("signers"), {
           isOptional: true,

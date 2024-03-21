@@ -50,7 +50,7 @@ impl AddMemoInstructionData {
 #[derive(BorshSerialize, BorshDeserialize, Clone, Debug, Eq, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct AddMemoInstructionArgs {
-    pub memo: String,
+    pub memo: &str,
 }
 
 /// Instruction builder for `AddMemo`.
@@ -59,7 +59,7 @@ pub struct AddMemoInstructionArgs {
 ///
 #[derive(Default)]
 pub struct AddMemoBuilder {
-    memo: Option<String>,
+    memo: Option<&str>,
     __remaining_accounts: Vec<solana_program::instruction::AccountMeta>,
 }
 
@@ -68,7 +68,7 @@ impl AddMemoBuilder {
         Self::default()
     }
     #[inline(always)]
-    pub fn memo(&mut self, memo: String) -> &mut Self {
+    pub fn memo(&mut self, memo: &str) -> &mut Self {
         self.memo = Some(memo);
         self
     }
@@ -201,7 +201,7 @@ impl<'a, 'b> AddMemoCpiBuilder<'a, 'b> {
         Self { instruction }
     }
     #[inline(always)]
-    pub fn memo(&mut self, memo: String) -> &mut Self {
+    pub fn memo(&mut self, memo: &str) -> &mut Self {
         self.instruction.memo = Some(memo);
         self
     }
@@ -262,7 +262,7 @@ impl<'a, 'b> AddMemoCpiBuilder<'a, 'b> {
 
 struct AddMemoCpiBuilderInstruction<'a, 'b> {
     __program: &'b solana_program::account_info::AccountInfo<'a>,
-    memo: Option<String>,
+    memo: Option<&str>,
     /// Additional instruction accounts `(AccountInfo, is_writable, is_signer)`.
     __remaining_accounts: Vec<(
         &'b solana_program::account_info::AccountInfo<'a>,
