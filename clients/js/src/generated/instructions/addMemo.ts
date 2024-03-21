@@ -23,17 +23,11 @@ import {
   IInstructionWithAccounts,
   IInstructionWithData,
 } from '@solana/instructions';
+import { MEMO_PROGRAM_ADDRESS } from '../programs';
 
 export type AddMemoInstruction<
-  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
-  TRemainingAccounts extends Array<IAccountMeta<string>> = [],
-> = IInstruction<TProgram> &
-  IInstructionWithData<Uint8Array> &
-  IInstructionWithAccounts<TRemainingAccounts>;
-
-export type AddMemoInstructionWithSigners<
-  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
-  TRemainingAccounts extends Array<IAccountMeta<string>> = [],
+  TProgram extends string = typeof MEMO_PROGRAM_ADDRESS,
+  TRemainingAccounts extends readonly IAccountMeta<string>[] = [],
 > = IInstruction<TProgram> &
   IInstructionWithData<Uint8Array> &
   IInstructionWithAccounts<TRemainingAccounts>;
@@ -64,49 +58,27 @@ export type AddMemoInput = {
   memo: AddMemoInstructionDataArgs['memo'];
 };
 
-export type AddMemoInputWithSigners = {
-  memo: AddMemoInstructionDataArgs['memo'];
-};
-
-export function getAddMemoInstruction<
-  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
->(input: AddMemoInputWithSigners): AddMemoInstructionWithSigners<TProgram>;
-export function getAddMemoInstruction<
-  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
->(input: AddMemoInput): AddMemoInstruction<TProgram>;
-export function getAddMemoInstruction(input: AddMemoInput): IInstruction {
+export function getAddMemoInstruction(
+  input: AddMemoInput
+): AddMemoInstruction<typeof MEMO_PROGRAM_ADDRESS> {
   // Program address.
-  const programAddress =
-    'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr' as Address<'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'>;
+  const programAddress = MEMO_PROGRAM_ADDRESS;
 
   // Original args.
   const args = { ...input };
 
-  const instruction = getAddMemoInstructionRaw(
-    args as AddMemoInstructionDataArgs,
-    programAddress
-  );
+  const instruction = {
+    programAddress,
+    data: getAddMemoInstructionDataEncoder().encode(
+      args as AddMemoInstructionDataArgs
+    ),
+  } as AddMemoInstruction<typeof MEMO_PROGRAM_ADDRESS>;
 
   return instruction;
 }
 
-export function getAddMemoInstructionRaw<
-  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
-  TRemainingAccounts extends Array<IAccountMeta<string>> = [],
->(
-  args: AddMemoInstructionDataArgs,
-  programAddress: Address<TProgram> = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr' as Address<TProgram>,
-  remainingAccounts?: TRemainingAccounts
-) {
-  return {
-    accounts: remainingAccounts ?? [],
-    data: getAddMemoInstructionDataEncoder().encode(args),
-    programAddress,
-  } as AddMemoInstruction<TProgram, TRemainingAccounts>;
-}
-
 export type ParsedAddMemoInstruction<
-  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
+  TProgram extends string = typeof MEMO_PROGRAM_ADDRESS,
 > = {
   programAddress: Address<TProgram>;
   data: AddMemoInstructionData;
