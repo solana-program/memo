@@ -8,6 +8,20 @@ const kinobi = k.createFromIdls([
   path.join(workingDirectory, "program", "idl.json"),
 ]);
 
+// Update instructions.
+kinobi.update(
+  k.updateInstructionsVisitor({
+    addMemo: {
+      remainingAccounts: [
+        k.instructionRemainingAccountsNode(k.argumentValueNode("signers"), {
+          isOptional: true,
+          isSigner: true,
+        }),
+      ],
+    },
+  })
+);
+
 // Render JavaScript.
 const jsClient = path.join(__dirname, "..", "clients", "js");
 kinobi.accept(
