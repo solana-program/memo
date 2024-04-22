@@ -7,6 +7,7 @@
 
 use borsh::BorshDeserialize;
 use borsh::BorshSerialize;
+use kaigan::types::RemainderStr;
 
 /// Accounts.
 pub struct AddMemo {}
@@ -39,10 +40,10 @@ impl AddMemo {
 }
 
 #[derive(BorshDeserialize, BorshSerialize)]
-struct AddMemoInstructionData {}
+pub struct AddMemoInstructionData {}
 
 impl AddMemoInstructionData {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Self {}
     }
 }
@@ -50,7 +51,7 @@ impl AddMemoInstructionData {
 #[derive(BorshSerialize, BorshDeserialize, Clone, Debug, Eq, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct AddMemoInstructionArgs {
-    pub memo: &str,
+    pub memo: RemainderStr,
 }
 
 /// Instruction builder for `AddMemo`.
@@ -59,7 +60,7 @@ pub struct AddMemoInstructionArgs {
 ///
 #[derive(Default)]
 pub struct AddMemoBuilder {
-    memo: Option<&str>,
+    memo: Option<RemainderStr>,
     __remaining_accounts: Vec<solana_program::instruction::AccountMeta>,
 }
 
@@ -68,7 +69,7 @@ impl AddMemoBuilder {
         Self::default()
     }
     #[inline(always)]
-    pub fn memo(&mut self, memo: &str) -> &mut Self {
+    pub fn memo(&mut self, memo: RemainderStr) -> &mut Self {
         self.memo = Some(memo);
         self
     }
@@ -201,7 +202,7 @@ impl<'a, 'b> AddMemoCpiBuilder<'a, 'b> {
         Self { instruction }
     }
     #[inline(always)]
-    pub fn memo(&mut self, memo: &str) -> &mut Self {
+    pub fn memo(&mut self, memo: RemainderStr) -> &mut Self {
         self.instruction.memo = Some(memo);
         self
     }
@@ -262,7 +263,7 @@ impl<'a, 'b> AddMemoCpiBuilder<'a, 'b> {
 
 struct AddMemoCpiBuilderInstruction<'a, 'b> {
     __program: &'b solana_program::account_info::AccountInfo<'a>,
-    memo: Option<&str>,
+    memo: Option<RemainderStr>,
     /// Additional instruction accounts `(AccountInfo, is_writable, is_signer)`.
     __remaining_accounts: Vec<(
         &'b solana_program::account_info::AccountInfo<'a>,
