@@ -1,7 +1,7 @@
 import {
-  appendTransactionInstruction,
+  appendTransactionMessageInstruction,
   getBase58Encoder,
-  getStringDecoder,
+  getUtf8Decoder,
   pipe,
 } from '@solana/web3.js';
 import test from 'ava';
@@ -22,7 +22,7 @@ test('it adds custom text to the transaction logs', async (t) => {
   const addMemo = getAddMemoInstruction({ memo: 'Hello world!' });
   const signature = await pipe(
     await createDefaultTransaction(client, payer),
-    (tx) => appendTransactionInstruction(addMemo, tx),
+    (tx) => appendTransactionMessageInstruction(addMemo, tx),
     async (tx) => signAndSendTransaction(client, tx)
   );
 
@@ -33,8 +33,6 @@ test('it adds custom text to the transaction logs', async (t) => {
   const instructionDataBase58 =
     result!.transaction.message.instructions[0].data;
   const instructionDataBytes = getBase58Encoder().encode(instructionDataBase58);
-  const instructionMemo = getStringDecoder({ size: 'variable' }).decode(
-    instructionDataBytes
-  );
+  const instructionMemo = getUtf8Decoder().decode(instructionDataBytes);
   t.is(instructionMemo, 'Hello world!');
 });
