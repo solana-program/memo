@@ -6,22 +6,11 @@
  * @see https://github.com/metaplex-foundation/kinobi
  */
 
-import { Address } from '@solana/addresses';
-import { Program } from '@solana/programs';
+import { Address } from '@solana/web3.js';
 import { ParsedAddMemoInstruction } from '../instructions';
 
 export const MEMO_PROGRAM_ADDRESS =
   'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr' as Address<'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'>;
-
-export type MemoProgram =
-  Program<'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'>;
-
-export function getMemoProgram(): MemoProgram {
-  return {
-    name: 'memo',
-    address: MEMO_PROGRAM_ADDRESS,
-  };
-}
 
 export enum MemoInstruction {
   AddMemo,
