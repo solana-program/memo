@@ -5,13 +5,13 @@ import {
   pipe,
 } from '@solana/web3.js';
 import test from 'ava';
-import { getAddMemoInstruction } from '../src/index.js';
+import { getAddMemoInstruction } from '../src';
 import {
   createDefaultSolanaClient,
   createDefaultTransaction,
   generateKeyPairSignerWithSol,
   signAndSendTransaction,
-} from './_setup.js';
+} from './_setup';
 
 test('it adds custom text to the transaction logs', async (t) => {
   // Given a payer wallet.
