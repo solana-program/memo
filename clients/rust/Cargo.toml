@@ -1,5 +1,5 @@
 [package]
-name = "solana-memo"
+name = "spl-memo-client"
 version = "0.0.0"
 edition = "2021"
 readme = "README.md"
