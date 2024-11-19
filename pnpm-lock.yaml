@@ -10,10 +10,10 @@ importers:
     devDependencies:
       '@codama/renderers-js':
         specifier: ^1.1.0
-        version: 1.1.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.3)
+        version: 1.1.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)
       '@codama/renderers-rust':
         specifier: ^1.0.0
-        version: 1.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.3)
+        version: 1.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)
       '@iarna/toml':
         specifier: ^2.2.5
         version: 2.2.5
@@ -21,8 +21,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       typescript:
-        specifier: ^5.5.2
-        version: 5.5.3
+        specifier: ^5.6.3
+        version: 5.6.3
       zx:
         specifier: ^8.2.2
         version: 8.2.2
@@ -216,8 +216,8 @@ packages:
     resolution: {integrity: sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==}
     engines: {node: '>= 0.4'}
 
-  typescript@5.5.3:
-    resolution: {integrity: sha512-/hreyEujaB0w76zKo6717l3L0o/qEUtRgdvUBvlkhoWeOVMjMuHNHk0BRBzikzuGDqNmPQbg5ifMEqsHLiIUcQ==}
+  typescript@5.6.3:
+    resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -276,14 +276,14 @@ snapshots:
       '@codama/nodes': 1.1.0
       '@codama/visitors-core': 1.1.0
 
-  '@codama/renderers-js@1.1.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.3)':
+  '@codama/renderers-js@1.1.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)':
     dependencies:
       '@codama/errors': 1.1.0
       '@codama/nodes': 1.1.0
       '@codama/nodes-from-anchor': 1.0.1
       '@codama/renderers-core': 1.0.1
       '@codama/visitors-core': 1.1.0
-      '@solana/codecs-strings': 2.0.0-rc.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.3)
+      '@solana/codecs-strings': 2.0.0-rc.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)
       nunjucks: 3.2.4
       prettier: 3.3.3
     transitivePeerDependencies:
@@ -291,13 +291,13 @@ snapshots:
       - fastestsmallesttextencoderdecoder
       - typescript
 
-  '@codama/renderers-rust@1.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.3)':
+  '@codama/renderers-rust@1.0.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)':
     dependencies:
       '@codama/errors': 1.0.0
       '@codama/nodes': 1.0.0
       '@codama/renderers-core': 1.0.0
       '@codama/visitors-core': 1.0.0
-      '@solana/codecs-strings': 2.0.0-rc.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.3)
+      '@solana/codecs-strings': 2.0.0-rc.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)
       nunjucks: 3.2.4
     transitivePeerDependencies:
       - chokidar
@@ -332,30 +332,30 @@ snapshots:
 
   '@noble/hashes@1.5.0': {}
 
-  '@solana/codecs-core@2.0.0-rc.4(typescript@5.5.3)':
+  '@solana/codecs-core@2.0.0-rc.4(typescript@5.6.3)':
     dependencies:
-      '@solana/errors': 2.0.0-rc.4(typescript@5.5.3)
-      typescript: 5.5.3
+      '@solana/errors': 2.0.0-rc.4(typescript@5.6.3)
+      typescript: 5.6.3
 
-  '@solana/codecs-numbers@2.0.0-rc.4(typescript@5.5.3)':
+  '@solana/codecs-numbers@2.0.0-rc.4(typescript@5.6.3)':
     dependencies:
-      '@solana/codecs-core': 2.0.0-rc.4(typescript@5.5.3)
-      '@solana/errors': 2.0.0-rc.4(typescript@5.5.3)
-      typescript: 5.5.3
+      '@solana/codecs-core': 2.0.0-rc.4(typescript@5.6.3)
+      '@solana/errors': 2.0.0-rc.4(typescript@5.6.3)
+      typescript: 5.6.3
 
-  '@solana/codecs-strings@2.0.0-rc.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.5.3)':
+  '@solana/codecs-strings@2.0.0-rc.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)':
     dependencies:
-      '@solana/codecs-core': 2.0.0-rc.4(typescript@5.5.3)
-      '@solana/codecs-numbers': 2.0.0-rc.4(typescript@5.5.3)
-      '@solana/errors': 2.0.0-rc.4(typescript@5.5.3)
+      '@solana/codecs-core': 2.0.0-rc.4(typescript@5.6.3)
+      '@solana/codecs-numbers': 2.0.0-rc.4(typescript@5.6.3)
+      '@solana/errors': 2.0.0-rc.4(typescript@5.6.3)
       fastestsmallesttextencoderdecoder: 1.0.22
-      typescript: 5.5.3
+      typescript: 5.6.3
 
-  '@solana/errors@2.0.0-rc.4(typescript@5.5.3)':
+  '@solana/errors@2.0.0-rc.4(typescript@5.6.3)':
     dependencies:
       chalk: 5.3.0
       commander: 12.1.0
-      typescript: 5.5.3
+      typescript: 5.6.3
 
   '@types/fs-extra@11.0.4':
     dependencies:
@@ -468,7 +468,7 @@ snapshots:
       gopd: 1.0.1
       has-property-descriptors: 1.0.2
 
-  typescript@5.5.3: {}
+  typescript@5.6.3: {}
 
   undici-types@6.19.8:
     optional: true
