@@ -19,7 +19,7 @@
     "template:upgrade": "zx ./scripts/upgrade-template.mjs"
   },
   "devDependencies": {
-    "@codama/renderers-js": "^1.0.0",
+    "@codama/renderers-js": "^1.1.0",
     "@codama/renderers-rust": "^1.0.0",
     "@iarna/toml": "^2.2.5",
     "codama": "^1.0.0",
