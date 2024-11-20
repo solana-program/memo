@@ -143,6 +143,12 @@ jobs:
         with:
           solana: true
 
+      - name: Restore Program Builds
+        uses: actions/cache/restore@v4
+        with:
+          path: ./**/*.so
+          key: ${{ runner.os }}-builds-${{ github.sha }}
+
       - name: Test Client JS
         run: pnpm clients:js:test
 
@@ -159,6 +165,12 @@ jobs:
         with:
           cargo-cache-key: cargo-rust-client
           solana: true
+
+      - name: Restore Program Builds
+        uses: actions/cache/restore@v4
+        with:
+          path: ./**/*.so
+          key: ${{ runner.os }}-builds-${{ github.sha }}
 
       - name: Test Client Rust
         run: pnpm clients:rust:test
