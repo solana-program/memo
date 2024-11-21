@@ -61,6 +61,26 @@ jobs:
       - name: Lint Client Rust
         run: pnpm clients:rust:lint
 
+  spellcheck_rust:
+    name: Spellcheck Rust
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Install cargo-spellcheck
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-spellcheck
+
+      - name: Setup Environment
+        uses: ./.github/actions/setup
+        with:
+          cargo-cache-key: cargo-spellcheck
+
+      - name: Run cargo-spellcheck
+        run: pnpm spellcheck:rust
+
   build_programs:
     name: Build programs
     runs-on: ubuntu-latest

@@ -20,7 +20,8 @@
     "clients:rust:lint": "zx ./scripts/client/lint-rust.mjs",
     "clients:rust:publish": "zx ./scripts/client/publish-rust.mjs",
     "clients:rust:test": "zx ./scripts/client/test-rust.mjs",
-    "template:upgrade": "zx ./scripts/upgrade-template.mjs"
+    "template:upgrade": "zx ./scripts/upgrade-template.mjs",
+    "spellcheck:rust": "cargo spellcheck --code 1"
   },
   "devDependencies": {
     "@codama/renderers-js": "^1.1.0",

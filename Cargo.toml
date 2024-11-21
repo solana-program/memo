@@ -10,3 +10,6 @@ solana = "2.1.0"
 [workspace.metadata.toolchains]
 format = "nightly-2024-08-08"
 lint = "nightly-2024-08-08"
+
+[workspace.metadata.spellcheck]
+config = "scripts/spellcheck.toml"
