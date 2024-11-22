@@ -18,7 +18,7 @@ use {
     solana_pubkey::Pubkey,
 };
 
-/// Legacy symbols from Memo v1
+/// Legacy symbols from Memo version 1
 pub mod v1 {
     solana_pubkey::declare_id!("Memo1UhkJRfHyvLMcVucJwxXeuD728EqVDDwQDxFMNo");
 }
@@ -29,7 +29,7 @@ solana_pubkey::declare_id!("MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr");
 ///
 /// Accounts expected by this instruction:
 ///
-///   0. ..0+N. `[signer]` Expected signers; if zero provided, instruction will
+///   0. `..0+N` `[signer]` Expected signers; if zero provided, instruction will
 ///      be processed as a normal, unsigned spl-memo
 pub fn build_memo(memo: &[u8], signer_pubkeys: &[&Pubkey]) -> Instruction {
     Instruction {
