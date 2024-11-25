@@ -61,6 +61,26 @@ jobs:
       - name: Lint Client Rust
         run: pnpm clients:rust:lint
 
+  audit_rust:
+    name: Audit Rust
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: ./.github/actions/setup
+        with:
+          cargo-cache-key: cargo-audit
+
+      - name: Install cargo-audit
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-audit
+
+      - name: Run cargo-audit
+        run: pnpm rust:audit
+
   spellcheck_rust:
     name: Spellcheck Rust
     runs-on: ubuntu-latest
