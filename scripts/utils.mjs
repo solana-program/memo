@@ -1,6 +1,7 @@
 import 'zx/globals';
 import { parse as parseToml } from '@iarna/toml';
 
+$.verbose = true;
 process.env.FORCE_COLOR = 3;
 process.env.CARGO_TERM_COLOR = 'always';
 
