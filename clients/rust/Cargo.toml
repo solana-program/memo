@@ -1,6 +1,6 @@
 [package]
 name = "spl-memo-client"
-version = "0.0.0"
+version = "0.1.0"
 description = "A generated Rust library for the Memo program"
 repository = "https://github.com/solana-program/memo"
 edition = "2021"
