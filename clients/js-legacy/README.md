@@ -4,7 +4,6 @@ A TypeScript library for interacting with the SPL Memo program.
 
 ## Links
 
-- [TypeScript Docs](https://solana-labs.github.io/solana-program-library/memo/js/)
 - [Install](#install)
 - [Build from Source](#build-from-source)
 
@@ -23,29 +22,29 @@ yarn add @solana/spl-memo @solana/web3.js@1
 0. Prerequisites
 
 * Node 16+
-* NPM 8+
+* PNPM 9+
 
 1. Clone the project:
 ```shell
-git clone https://github.com/solana-labs/solana-program-library.git
+git clone https://github.com/solana-program/memo.git
 ```
 
 2. Navigate to the library:
 ```shell
-cd solana-program-library/memo/js
+cd clients/js-legacy
 ```
 
 3. Install the dependencies:
 ```shell
-npm install
+pnpm install
 ```
 
 4. Build the library:
 ```shell
-npm run build
+pnpm build
 ```
 
 5. Run the tests:
 ```shell
-npm run test
+pnpm test
 ```
