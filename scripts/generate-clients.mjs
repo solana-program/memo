@@ -3,7 +3,7 @@ import 'zx/globals';
 import { createFromRoot } from 'codama';
 import { renderVisitor as renderJavaScriptVisitor } from '@codama/renderers-js';
 import { renderVisitor as renderRustVisitor } from '@codama/renderers-rust';
-import { workingDirectory } from './utils.mjs';
+import { getToolchainArgument, workingDirectory } from './utils.mjs';
 
 // Instanciate Codama.
 const codama = createFromRoot(
@@ -24,5 +24,6 @@ codama.accept(
   renderRustVisitor(path.join(rustClient, 'src', 'generated'), {
     formatCode: true,
     crateFolder: rustClient,
+    toolchain: getToolchainArgument('format'),
   })
 );
