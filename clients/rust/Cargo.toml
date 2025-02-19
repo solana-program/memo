@@ -18,10 +18,10 @@ num-derive = "^0.4"
 num-traits = "^0.2"
 serde = { version = "^1.0", features = ["derive"], optional = true }
 serde_with = { version = "^3.12", optional = true }
-solana-program = "2.1.0"
+solana-program = "2.2.1"
 thiserror = "^2.0"
 
 [dev-dependencies]
 assert_matches = "1.5.0"
-solana-program-test = "2.1.13"
-solana-sdk = "2.1.0"
+solana-program-test = "2.2.0"
+solana-sdk = "2.2.1"
