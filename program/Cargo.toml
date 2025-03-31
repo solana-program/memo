@@ -20,7 +20,7 @@ solana-program-error = "2.2.1"
 solana-pubkey = "2.2.1"
 
 [dev-dependencies]
-solana-program-test = "2.2.4"
+solana-program-test = "2.2.6"
 solana-sdk = "2.2.1"
 
 [lib]
