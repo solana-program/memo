@@ -1,8 +1,7 @@
-use core::str::from_utf8;
 use pinocchio::{
     entrypoint::{InstructionContext, MaybeAccount},
     program_error::ProgramError,
-    syscalls::sol_log_pubkey,
+    syscalls::{sol_log_, sol_log_pubkey},
     ProgramResult,
 };
 use pinocchio_log::log;
@@ -17,6 +16,7 @@ pub fn process_instruction(mut context: InstructionContext) -> ProgramResult {
     let mut missing_required_signature = false;
 
     // Validates signer accounts (if any).
+
     if context.remaining() > 0 {
         // Logs a message indicating that there are signers.
         log!("Signed by:");
@@ -43,15 +43,12 @@ pub fn process_instruction(mut context: InstructionContext) -> ProgramResult {
     let instruction_data = unsafe { context.instruction_data_unchecked() };
 
     // Logs the length of the memo message and its content.
-    log!(
-        1300,
-        "Memo (len {}): \"{}\"",
-        instruction_data.len(),
-        from_utf8(instruction_data).map_err(|error| {
-            log!(1300, "Invalid UTF-8, from byte {}", error.valid_up_to());
-            ProgramError::InvalidInstructionData
-        })?
-    );
+
+    log!("Memo (len {}):", instruction_data.len());
+    // SAFETY: The syscall will validate the UTF-8 encoding of the memo data.
+    unsafe {
+        sol_log_(instruction_data.as_ptr(), instruction_data.len() as u64);
+    }
 
     Ok(())
 }

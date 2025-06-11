@@ -1,6 +1,6 @@
 use mollusk_svm::{result::Check, Mollusk};
 use solana_account::Account;
-use solana_instruction::{AccountMeta, Instruction};
+use solana_instruction::{error::InstructionError, AccountMeta, Instruction};
 use solana_program_error::ProgramError;
 use solana_pubkey::Pubkey;
 
@@ -47,7 +47,9 @@ fn fail_test_invalid_ascii_no_accounts() {
     mollusk.process_and_validate_instruction(
         &instruction,
         &[],
-        &[Check::err(ProgramError::InvalidInstructionData)],
+        &[Check::instruction_err(
+            InstructionError::ProgramFailedToComplete,
+        )],
     );
 }
 
@@ -62,6 +64,22 @@ fn test_valid_ascii_one_accounts() {
         &instruction,
         &[(signer, Account::default())],
         &[Check::success()],
+    );
+}
+
+#[test]
+fn fail_test_invalid_missing_signer() {
+    let mollusk = Mollusk::new(&PROGRAM_ID, "p_memo");
+
+    let signer = Pubkey::new_unique();
+    let mut instruction = instruction(MEMO.as_bytes(), Some(&[signer]));
+    // Set the account to be non-signer.
+    instruction.accounts[0].is_signer = false;
+
+    mollusk.process_and_validate_instruction(
+        &instruction,
+        &[(signer, Account::default())],
+        &[Check::err(ProgramError::MissingRequiredSignature)],
     );
 }
 
