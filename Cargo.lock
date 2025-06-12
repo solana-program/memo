@@ -2442,6 +2442,66 @@ dependencies = [
 ]
 
 [[package]]
+name = "mollusk-svm"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "31b5f9d6653145815a076efa5d1a7edd214c05d5130cd46a049ededb9f81985f"
+dependencies = [
+ "agave-feature-set",
+ "agave-precompiles",
+ "bincode",
+ "mollusk-svm-error",
+ "mollusk-svm-keys",
+ "solana-account",
+ "solana-bpf-loader-program",
+ "solana-clock",
+ "solana-compute-budget",
+ "solana-epoch-rewards",
+ "solana-epoch-schedule",
+ "solana-fee-structure",
+ "solana-hash",
+ "solana-instruction",
+ "solana-loader-v3-interface",
+ "solana-log-collector",
+ "solana-logger",
+ "solana-program-error",
+ "solana-program-runtime",
+ "solana-pubkey",
+ "solana-rent",
+ "solana-sdk-ids",
+ "solana-slot-hashes",
+ "solana-stake-interface",
+ "solana-system-program",
+ "solana-sysvar",
+ "solana-sysvar-id",
+ "solana-timings",
+ "solana-transaction-context",
+]
+
+[[package]]
+name = "mollusk-svm-error"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4d86b4da31faa9d7117817190439362af407e4f26949c4de80456e03f58cfc9a"
+dependencies = [
+ "solana-pubkey",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "mollusk-svm-keys"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fee5fc3f637b3b3d8c2ba3f3df3173ceaaadc83792e84a8cc87dcbb41d435d74"
+dependencies = [
+ "mollusk-svm-error",
+ "solana-account",
+ "solana-instruction",
+ "solana-pubkey",
+ "solana-transaction-context",
+]
+
+[[package]]
 name = "nix"
 version = "0.29.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2726,6 +2786,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "p-memo"
+version = "0.0.0"
+dependencies = [
+ "mollusk-svm",
+ "pinocchio",
+ "pinocchio-log",
+ "solana-account",
+ "solana-instruction",
+ "solana-program-error",
+ "solana-pubkey",
+]
+
+[[package]]
 name = "parking"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2824,6 +2897,32 @@ name = "pin-utils"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8b870d8c151b6f2fb93e84a13146138f05d02ed11c7e7c54f8826aaaf7c9f184"
+
+[[package]]
+name = "pinocchio"
+version = "0.8.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7c33b58567c11b07749cefbb8320ac023f3387c57807aeb8e3b1262501b6e9f0"
+
+[[package]]
+name = "pinocchio-log"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f89f8ffd986174cefe59448295a004aaf70c3605f30de066f42d27b06188f267"
+dependencies = [
+ "pinocchio-log-macro",
+]
+
+[[package]]
+name = "pinocchio-log-macro"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6edac6ac2c9c456b850d3e908b7f224a54623f6c5b75906b9e48a4e248fb332b"
+dependencies = [
+ "quote",
+ "regex",
+ "syn 1.0.109",
+]
 
 [[package]]
 name = "pkg-config"
