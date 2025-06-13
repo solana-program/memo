@@ -2443,25 +2443,26 @@ dependencies = [
 
 [[package]]
 name = "mollusk-svm"
-version = "0.1.5"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "31b5f9d6653145815a076efa5d1a7edd214c05d5130cd46a049ededb9f81985f"
+checksum = "2ed80f617f77f2a601da77380c678b83e09650d8905d0e1ed3a3583b5888d293"
 dependencies = [
  "agave-feature-set",
  "agave-precompiles",
  "bincode",
  "mollusk-svm-error",
  "mollusk-svm-keys",
+ "mollusk-svm-result",
  "solana-account",
  "solana-bpf-loader-program",
  "solana-clock",
  "solana-compute-budget",
  "solana-epoch-rewards",
  "solana-epoch-schedule",
- "solana-fee-structure",
  "solana-hash",
  "solana-instruction",
  "solana-loader-v3-interface",
+ "solana-loader-v4-interface",
  "solana-log-collector",
  "solana-logger",
  "solana-program-error",
@@ -2480,9 +2481,9 @@ dependencies = [
 
 [[package]]
 name = "mollusk-svm-error"
-version = "0.1.5"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4d86b4da31faa9d7117817190439362af407e4f26949c4de80456e03f58cfc9a"
+checksum = "378749087f921103da3f683fb2b11bcc406dfb0feb5fce5f20a8bc2e1edaf0e8"
 dependencies = [
  "solana-pubkey",
  "thiserror 1.0.69",
@@ -2490,15 +2491,28 @@ dependencies = [
 
 [[package]]
 name = "mollusk-svm-keys"
-version = "0.1.5"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fee5fc3f637b3b3d8c2ba3f3df3173ceaaadc83792e84a8cc87dcbb41d435d74"
+checksum = "4cfa6bef322e46954ecf758e6e795d27b8d9ffc37d070b703f577afaa6bc86bc"
 dependencies = [
  "mollusk-svm-error",
  "solana-account",
  "solana-instruction",
  "solana-pubkey",
  "solana-transaction-context",
+]
+
+[[package]]
+name = "mollusk-svm-result"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1968e3a51d734a15c3ab49727ad24887075f37a1560b90a9295c33f030d32b1"
+dependencies = [
+ "solana-account",
+ "solana-instruction",
+ "solana-program-error",
+ "solana-pubkey",
+ "solana-rent",
 ]
 
 [[package]]
