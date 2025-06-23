@@ -6823,8 +6823,12 @@ dependencies = [
  "num-traits",
  "serde",
  "serde_with",
- "solana-program",
+ "solana-account-info",
+ "solana-cpi",
+ "solana-instruction",
+ "solana-program-entrypoint",
  "solana-program-test",
+ "solana-pubkey",
  "solana-sdk",
  "thiserror 2.0.12",
 ]
