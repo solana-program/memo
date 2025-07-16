@@ -18,7 +18,7 @@ num-derive = "^0.4"
 num-traits = "^0.2"
 serde = { version = "^1.0", features = ["derive"], optional = true }
 serde_with = { version = "^3.14", optional = true }
-solana-account-info = "2.2.1"
+solana-account-info = "2.3.0"
 solana-cpi = "2.2.1"
 solana-instruction = "2.2.1"
 solana-program-entrypoint = "2.2.1"
