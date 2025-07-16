@@ -21,7 +21,7 @@ serde_with = { version = "^3.14", optional = true }
 solana-account-info = "2.2.1"
 solana-cpi = "2.2.1"
 solana-instruction = "2.2.1"
-solana-program-entrypoint = "2.2.1"
+solana-program-entrypoint = "2.3.0"
 solana-pubkey = "2.2.1"
 thiserror = "^2.0"
 
