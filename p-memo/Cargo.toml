@@ -20,7 +20,7 @@ check-cfg = ['cfg(target_os, values("solana"))']
 
 [dependencies]
 pinocchio = "0.9"
-pinocchio-log = "0.4"
+pinocchio-log = "0.5"
 
 [dev-dependencies]
 mollusk-svm = "0.4"
