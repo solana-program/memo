@@ -8,6 +8,8 @@
     "programs:test": "zx ./scripts/rust/test-sbf.mjs program",
     "programs:format": "zx ./scripts/rust/format.mjs program",
     "programs:lint": "zx ./scripts/rust/lint.mjs program",
+    "p-memo:build": "zx ./scripts/rust/build-sbf.mjs p-memo",
+    "p-memo:test": "zx ./scripts/rust/test-sbf.mjs p-memo",
     "solana:check": "zx ./scripts/check-solana-version.mjs",
     "solana:link": "zx ./scripts/link-solana-version.mjs",
     "generate": "pnpm generate:clients",

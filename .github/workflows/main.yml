@@ -139,6 +139,9 @@ jobs:
       - name: Build Programs
         run: pnpm programs:build
 
+      - name: Build p-memo
+        run: pnpm p-memo:build
+
       - name: Upload Program Builds
         uses: actions/upload-artifact@v4
         with:
@@ -186,6 +189,9 @@ jobs:
 
       - name: Test Programs
         run: pnpm programs:test
+
+      - name: Test p-memo
+        run: pnpm p-memo:test
 
   generate_clients:
     name: Check Client Generation
