@@ -7094,6 +7094,7 @@ dependencies = [
  "solana-program-test",
  "solana-pubkey",
  "solana-sdk",
+ "spl-memo-interface",
 ]
 
 [[package]]
@@ -7115,6 +7116,14 @@ dependencies = [
  "solana-pubkey",
  "solana-sdk",
  "thiserror 2.0.12",
+]
+
+[[package]]
+name = "spl-memo-interface"
+version = "1.0.0"
+dependencies = [
+ "solana-instruction",
+ "solana-pubkey",
 ]
 
 [[package]]
