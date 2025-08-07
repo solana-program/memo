@@ -2547,7 +2547,7 @@ dependencies = [
  "solana-log-collector",
  "solana-logger",
  "solana-precompile-error",
- "solana-program-error",
+ "solana-program-error 2.2.2",
  "solana-program-runtime",
  "solana-pubkey",
  "solana-rent",
@@ -2593,7 +2593,7 @@ checksum = "b25a23a80c4273f698c595fa10f969050effca7bb2ecee2df72c956f582b174a"
 dependencies = [
  "solana-account",
  "solana-instruction",
- "solana-program-error",
+ "solana-program-error 2.2.2",
  "solana-pubkey",
  "solana-rent",
 ]
@@ -2891,7 +2891,7 @@ dependencies = [
  "pinocchio-log",
  "solana-account",
  "solana-instruction",
- "solana-program-error",
+ "solana-program-error 3.0.0",
  "solana-pubkey",
 ]
 
@@ -4041,7 +4041,7 @@ checksum = "c8f5152a288ef1912300fc6efa6c2d1f9bb55d9398eb6c72326360b8063987da"
 dependencies = [
  "bincode",
  "serde",
- "solana-program-error",
+ "solana-program-error 2.2.2",
  "solana-program-memory",
  "solana-pubkey",
 ]
@@ -4608,7 +4608,7 @@ dependencies = [
  "solana-account-info",
  "solana-define-syscall 2.3.0",
  "solana-instruction",
- "solana-program-error",
+ "solana-program-error 2.2.2",
  "solana-pubkey",
  "solana-stable-layout",
 ]
@@ -4755,7 +4755,7 @@ dependencies = [
  "solana-account",
  "solana-account-info",
  "solana-instruction",
- "solana-program-error",
+ "solana-program-error 2.2.2",
  "solana-pubkey",
  "solana-rent",
  "solana-sdk-ids",
@@ -4906,7 +4906,7 @@ dependencies = [
  "bitflags 2.8.0",
  "solana-account-info",
  "solana-instruction",
- "solana-program-error",
+ "solana-program-error 2.2.2",
  "solana-pubkey",
  "solana-sanitize",
  "solana-sdk-ids",
@@ -5374,7 +5374,7 @@ dependencies = [
  "solana-native-token",
  "solana-nonce",
  "solana-program-entrypoint",
- "solana-program-error",
+ "solana-program-error 2.2.2",
  "solana-program-memory",
  "solana-program-option",
  "solana-program-pack",
@@ -5408,7 +5408,7 @@ checksum = "32ce041b1a0ed275290a5008ee1a4a6c48f5054c8a3d78d313c08958a06aedbd"
 dependencies = [
  "solana-account-info",
  "solana-msg 2.2.1",
- "solana-program-error",
+ "solana-program-error 2.2.2",
  "solana-pubkey",
 ]
 
@@ -5427,6 +5427,12 @@ dependencies = [
  "solana-msg 2.2.1",
  "solana-pubkey",
 ]
+
+[[package]]
+name = "solana-program-error"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1af32c995a7b692a915bb7414d5f8e838450cf7c70414e763d8abcae7b51f28"
 
 [[package]]
 name = "solana-program-memory"
@@ -5450,7 +5456,7 @@ version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "319f0ef15e6e12dc37c597faccb7d62525a509fec5f6975ecb9419efddeb277b"
 dependencies = [
- "solana-program-error",
+ "solana-program-error 2.2.2",
 ]
 
 [[package]]
@@ -5535,7 +5541,7 @@ dependencies = [
  "solana-native-token",
  "solana-poh-config",
  "solana-program-entrypoint",
- "solana-program-error",
+ "solana-program-error 2.2.2",
  "solana-program-runtime",
  "solana-pubkey",
  "solana-rent",
@@ -6330,7 +6336,7 @@ dependencies = [
  "solana-cpi",
  "solana-decode-error",
  "solana-instruction",
- "solana-program-error",
+ "solana-program-error 2.2.2",
  "solana-pubkey",
  "solana-system-interface",
  "solana-sysvar-id",
@@ -6590,7 +6596,7 @@ dependencies = [
  "solana-instructions-sysvar",
  "solana-last-restart-slot",
  "solana-program-entrypoint",
- "solana-program-error",
+ "solana-program-error 2.2.2",
  "solana-program-memory",
  "solana-pubkey",
  "solana-rent",
@@ -7105,7 +7111,7 @@ dependencies = [
  "solana-instruction",
  "solana-msg 3.0.0",
  "solana-program-entrypoint",
- "solana-program-error",
+ "solana-program-error 3.0.0",
  "solana-program-test",
  "solana-pubkey",
  "solana-sdk",
