@@ -12,7 +12,7 @@ no-entrypoint = []
 test-sbf = []
 
 [dependencies]
-solana-account-info = "2.3.0"
+solana-account-info = "3.0.0"
 solana-instruction = "2.2.1"
 solana-msg = "3.0.0"
 solana-program-entrypoint = "2.3.0"
