@@ -22,7 +22,7 @@ solana-account-info = "2.3.0"
 solana-cpi = "2.2.1"
 solana-instruction = "2.2.1"
 solana-program-entrypoint = "2.3.0"
-solana-pubkey = "2.2.1"
+solana-pubkey = "3.0.0"
 thiserror = "^2.0"
 
 [dev-dependencies]
