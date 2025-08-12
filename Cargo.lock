@@ -7197,7 +7197,7 @@ dependencies = [
  "solana-program-test",
  "solana-pubkey 2.4.0",
  "solana-sdk",
- "spl-memo-interface 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "spl-memo-interface 1.0.0",
 ]
 
 [[package]]
@@ -7224,19 +7224,19 @@ dependencies = [
 [[package]]
 name = "spl-memo-interface"
 version = "1.0.0"
-dependencies = [
- "solana-instruction 3.0.0",
- "solana-pubkey 3.0.0",
-]
-
-[[package]]
-name = "spl-memo-interface"
-version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "24af0730130fea732616be9425fe8eb77782e2aab2f0e76837b6a66aaba96c6b"
 dependencies = [
  "solana-instruction 2.3.0",
  "solana-pubkey 2.4.0",
+]
+
+[[package]]
+name = "spl-memo-interface"
+version = "2.0.0"
+dependencies = [
+ "solana-instruction 3.0.0",
+ "solana-pubkey 3.0.0",
 ]
 
 [[package]]
