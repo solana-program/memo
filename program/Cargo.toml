@@ -18,7 +18,7 @@ solana-msg = "3.0.0"
 solana-program-entrypoint = "2.3.0"
 solana-program-error = "2.2.2"
 solana-pubkey = "2.2.1"
-spl-memo-interface = { path = "../interface", version = "1.0.0" }
+spl-memo-interface = { version = "1.0.0" }
 
 [dev-dependencies]
 solana-program-test = "2.3.7"
