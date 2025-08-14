@@ -4009,7 +4009,7 @@ dependencies = [
  "serde",
  "serde_bytes",
  "serde_derive",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-clock",
  "solana-instruction 2.3.0",
  "solana-pubkey 2.4.0",
@@ -4042,8 +4042,19 @@ dependencies = [
  "bincode",
  "serde",
  "solana-program-error 2.2.2",
- "solana-program-memory",
+ "solana-program-memory 2.2.1",
  "solana-pubkey 2.4.0",
+]
+
+[[package]]
+name = "solana-account-info"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "82f4691b69b172c687d218dd2f1f23fc7ea5e9aa79df9ac26dab3d8dd829ce48"
+dependencies = [
+ "solana-program-error 3.0.0",
+ "solana-program-memory 3.0.0",
+ "solana-pubkey 3.0.0",
 ]
 
 [[package]]
@@ -4311,7 +4322,7 @@ dependencies = [
  "qualifier_attr",
  "scopeguard",
  "solana-account",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-big-mod-exp",
  "solana-bincode",
  "solana-blake3-hasher",
@@ -4328,7 +4339,7 @@ dependencies = [
  "solana-measure",
  "solana-packet",
  "solana-poseidon",
- "solana-program-entrypoint",
+ "solana-program-entrypoint 2.3.0",
  "solana-program-runtime",
  "solana-pubkey 2.4.0",
  "solana-sbpf",
@@ -4629,7 +4640,7 @@ version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8dc71126edddc2ba014622fc32d0f5e2e78ec6c5a1e0eb511b85618c09e9ea11"
 dependencies = [
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-define-syscall 2.3.0",
  "solana-instruction 2.3.0",
  "solana-program-error 2.2.2",
@@ -4777,7 +4788,7 @@ dependencies = [
  "serde",
  "serde_derive",
  "solana-account",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-instruction 2.3.0",
  "solana-program-error 2.2.2",
  "solana-pubkey 2.4.0",
@@ -4960,7 +4971,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e0e85a6fad5c2d0c4f5b91d34b8ca47118fc593af706e523cdbedf846a954f57"
 dependencies = [
  "bitflags 2.8.0",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-instruction 2.3.0",
  "solana-program-error 2.2.2",
  "solana-pubkey 2.4.0",
@@ -5401,7 +5412,7 @@ dependencies = [
  "serde",
  "serde_bytes",
  "serde_derive",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-address-lookup-table-interface",
  "solana-atomic-u64 2.2.1",
  "solana-big-mod-exp",
@@ -5429,9 +5440,9 @@ dependencies = [
  "solana-msg 2.2.1",
  "solana-native-token",
  "solana-nonce",
- "solana-program-entrypoint",
+ "solana-program-entrypoint 2.3.0",
  "solana-program-error 2.2.2",
- "solana-program-memory",
+ "solana-program-memory 2.2.1",
  "solana-program-option",
  "solana-program-pack",
  "solana-pubkey 2.4.0",
@@ -5462,10 +5473,23 @@ version = "2.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "32ce041b1a0ed275290a5008ee1a4a6c48f5054c8a3d78d313c08958a06aedbd"
 dependencies = [
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-msg 2.2.1",
  "solana-program-error 2.2.2",
  "solana-pubkey 2.4.0",
+]
+
+[[package]]
+name = "solana-program-entrypoint"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6557cf5b5e91745d1667447438a1baa7823c6086e4ece67f8e6ebfa7a8f72660"
+dependencies = [
+ "solana-account-info 3.0.0",
+ "solana-define-syscall 3.0.0",
+ "solana-msg 3.0.0",
+ "solana-program-error 3.0.0",
+ "solana-pubkey 3.0.0",
 ]
 
 [[package]]
@@ -5498,6 +5522,15 @@ checksum = "1b0268f6c89825fb634a34bd0c3b8fdaeaecfc3728be1d622a8ee6dd577b60d4"
 dependencies = [
  "num-traits",
  "solana-define-syscall 2.3.0",
+]
+
+[[package]]
+name = "solana-program-memory"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "10e5660c60749c7bfb30b447542529758e4dbcecd31b1e8af1fdc92e2bdde90a"
+dependencies = [
+ "solana-define-syscall 3.0.0",
 ]
 
 [[package]]
@@ -5540,7 +5573,7 @@ dependencies = [
  "solana-log-collector",
  "solana-measure",
  "solana-metrics",
- "solana-program-entrypoint",
+ "solana-program-entrypoint 2.3.0",
  "solana-pubkey 2.4.0",
  "solana-rent",
  "solana-sbpf",
@@ -5574,7 +5607,7 @@ dependencies = [
  "log",
  "serde",
  "solana-account",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-accounts-db",
  "solana-banks-client",
  "solana-banks-interface",
@@ -5596,7 +5629,7 @@ dependencies = [
  "solana-msg 2.2.1",
  "solana-native-token",
  "solana-poh-config",
- "solana-program-entrypoint",
+ "solana-program-entrypoint 2.3.0",
  "solana-program-error 2.2.2",
  "solana-program-runtime",
  "solana-pubkey 2.4.0",
@@ -5945,7 +5978,7 @@ dependencies = [
  "serde_json",
  "serde_with",
  "solana-account",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-accounts-db",
  "solana-address-lookup-table-interface",
  "solana-bpf-loader-program",
@@ -6126,7 +6159,7 @@ dependencies = [
  "solana-precompiles",
  "solana-presigner",
  "solana-program",
- "solana-program-memory",
+ "solana-program-memory 2.2.1",
  "solana-pubkey 2.4.0",
  "solana-quic-definitions",
  "solana-rent-collector",
@@ -6526,7 +6559,7 @@ dependencies = [
  "solana-message",
  "solana-nonce",
  "solana-nonce-account",
- "solana-program-entrypoint",
+ "solana-program-entrypoint 2.3.0",
  "solana-program-pack",
  "solana-program-runtime",
  "solana-pubkey 2.4.0",
@@ -6667,7 +6700,7 @@ dependencies = [
  "lazy_static",
  "serde",
  "serde_derive",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-clock",
  "solana-define-syscall 2.3.0",
  "solana-epoch-rewards",
@@ -6677,9 +6710,9 @@ dependencies = [
  "solana-instruction 2.3.0",
  "solana-instructions-sysvar",
  "solana-last-restart-slot",
- "solana-program-entrypoint",
+ "solana-program-entrypoint 2.3.0",
  "solana-program-error 2.2.2",
- "solana-program-memory",
+ "solana-program-memory 2.2.1",
  "solana-pubkey 2.4.0",
  "solana-rent",
  "solana-sanitize 2.2.1",
@@ -7189,10 +7222,10 @@ dependencies = [
 name = "spl-memo"
 version = "6.0.0"
 dependencies = [
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-instruction 2.3.0",
  "solana-msg 3.0.0",
- "solana-program-entrypoint",
+ "solana-program-entrypoint 3.1.0",
  "solana-program-error 2.2.2",
  "solana-program-test",
  "solana-pubkey 2.4.0",
@@ -7211,10 +7244,10 @@ dependencies = [
  "num-traits",
  "serde",
  "serde_with",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-cpi",
  "solana-instruction 2.3.0",
- "solana-program-entrypoint",
+ "solana-program-entrypoint 3.1.0",
  "solana-program-test",
  "solana-pubkey 2.4.0",
  "solana-sdk",
