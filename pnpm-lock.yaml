@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@codama/renderers-js':
-        specifier: ^1.3.2
-        version: 1.3.2(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.9.2)
+        specifier: ^1.3.4
+        version: 1.3.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.9.2)
       '@codama/renderers-rust':
         specifier: ^1.1.3
         version: 1.1.3(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.9.2)
@@ -56,8 +56,11 @@ packages:
   '@codama/renderers-core@1.0.17':
     resolution: {integrity: sha512-pH0tyCrkhmmc84V5kAfXAiaTn+FPPW8nM530cZWneWr2q12frgmCtmIwrGcRKyqDPnS/dJ05P+y/TOZMit+Ldg==}
 
-  '@codama/renderers-js@1.3.2':
-    resolution: {integrity: sha512-LDYurCw+rWVMlRiZSClQFYdV52TmEMjMBsP3HBUID4I0WQcZhQYzlnQEQbasnlBSHuVOLvjGEMztC7g2yioZIg==}
+  '@codama/renderers-core@1.0.19':
+    resolution: {integrity: sha512-ARvgw8ObOMiIbeahcKBpWKl2N4lYaywDOAsbYDjr/zV8jpPll39TVidgQt0lP4JjdGz7xZTBCmQmtxW5hqr9pA==}
+
+  '@codama/renderers-js@1.3.4':
+    resolution: {integrity: sha512-srcHHCc7l2FXTlUEoPOolw0bmxBkdyqpzOGtBNc7eeF9sOCE3mlR84qXzxoqCKx4T26wl+QHihI0wby0bMlfrA==}
 
   '@codama/renderers-rust@1.1.3':
     resolution: {integrity: sha512-hUk9yFfyq376x41jU4sSUAx3CKemybGH6mjqmIvMmjPPcupPxdoRPkI+CpidbfNMlkSG6vlpJR5CHSR3j909eQ==}
@@ -294,12 +297,18 @@ snapshots:
       '@codama/nodes': 1.3.1
       '@codama/visitors-core': 1.3.1
 
-  '@codama/renderers-js@1.3.2(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.9.2)':
+  '@codama/renderers-core@1.0.19':
     dependencies:
-      '@codama/errors': 1.3.1
-      '@codama/nodes': 1.3.1
-      '@codama/renderers-core': 1.0.17
-      '@codama/visitors-core': 1.3.1
+      '@codama/errors': 1.3.3
+      '@codama/nodes': 1.3.3
+      '@codama/visitors-core': 1.3.3
+
+  '@codama/renderers-js@1.3.4(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.9.2)':
+    dependencies:
+      '@codama/errors': 1.3.3
+      '@codama/nodes': 1.3.3
+      '@codama/renderers-core': 1.0.19
+      '@codama/visitors-core': 1.3.3
       '@solana/codecs-strings': 2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.9.2)
       nunjucks: 3.2.4
       prettier: 3.6.2
