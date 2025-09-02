@@ -23,12 +23,15 @@ test('it adds custom text to the transaction logs', async (t) => {
   const signature = await pipe(
     await createDefaultTransaction(client, payer),
     (tx) => appendTransactionMessageInstruction(addMemo, tx),
-    async (tx) => signAndSendTransaction(client, tx)
+    (tx) => signAndSendTransaction(client, tx)
   );
 
   // Then the instruction data contains our memo.
   const result = await client.rpc
-    .getTransaction(signature, { maxSupportedTransactionVersion: 0 })
+    .getTransaction(signature, {
+      encoding: 'json',
+      maxSupportedTransactionVersion: 0,
+    })
     .send();
   const instructionDataBase58 =
     result!.transaction.message.instructions[0].data;
