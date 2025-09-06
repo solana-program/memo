@@ -567,7 +567,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4114279215a005bc675e386011e594e1d9b800918cea18fcadadcce864a2046b"
 dependencies = [
  "borsh-derive 0.10.3",
- "hashbrown 0.13.2",
+ "hashbrown 0.12.3",
 ]
 
 [[package]]
@@ -2891,7 +2891,7 @@ dependencies = [
  "pinocchio-log",
  "solana-account",
  "solana-instruction 2.3.0",
- "solana-program-error 2.2.2",
+ "solana-program-error 3.0.0",
  "solana-pubkey 2.4.0",
 ]
 
@@ -7193,7 +7193,7 @@ dependencies = [
  "solana-instruction 2.3.0",
  "solana-msg 3.0.0",
  "solana-program-entrypoint",
- "solana-program-error 2.2.2",
+ "solana-program-error 3.0.0",
  "solana-program-test",
  "solana-pubkey 2.4.0",
  "solana-sdk",
