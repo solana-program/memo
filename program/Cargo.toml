@@ -21,7 +21,7 @@ solana-pubkey = "2.2.1"
 spl-memo-interface = { version = "1.0.0" }
 
 [dev-dependencies]
-solana-program-test = "2.3.7"
+solana-program-test = "2.3.10"
 solana-sdk = "2.2.1"
 
 [lib]
