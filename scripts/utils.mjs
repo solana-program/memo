@@ -1,9 +1,9 @@
 import 'zx/globals';
 import { parse as parseToml } from '@iarna/toml';
 
-$.verbose = true;
 process.env.FORCE_COLOR = 3;
 process.env.CARGO_TERM_COLOR = 'always';
+$.verbose = true;
 
 export const workingDirectory = (await $`pwd`.quiet()).toString().trim();
 
@@ -124,4 +124,13 @@ export async function getInstalledSolanaVersion() {
   } catch (error) {
     return '';
   }
+}
+
+export function getPackageJson(folder) {
+  return JSON.parse(
+    fs.readFileSync(
+      path.join(workingDirectory, folder ? folder : '.', 'package.json'),
+      'utf8'
+    )
+  );
 }
