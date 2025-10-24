@@ -1,5 +1,3 @@
-#![cfg(feature = "test-sbf")]
-
 use {
     solana_instruction::{error::InstructionError, AccountMeta, Instruction},
     solana_program_test::*,
