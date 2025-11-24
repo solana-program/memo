@@ -18,14 +18,9 @@ num-derive = "^0.4"
 num-traits = "^0.2"
 serde = { version = "^1.0", features = ["derive"], optional = true }
 serde_with = { version = "^3.16", optional = true }
-solana-account-info = "3.0.0"
-solana-cpi = "3.0.0"
-solana-instruction = "3.0.0"
-solana-program-entrypoint = "3.0.0"
-solana-pubkey = "3.0.0"
+solana-account-info = "3.1.0"
+solana-cpi = "3.1.0"
+solana-instruction = "3.1.0"
+solana-program-entrypoint = "3.1.0"
+solana-pubkey = "4.0.0"
 thiserror = "^2.0"
-
-[dev-dependencies]
-assert_matches = "1.5.0"
-solana-program-test = "3.0.10"
-solana-sdk = "3.0.0"
