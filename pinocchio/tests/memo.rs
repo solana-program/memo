@@ -1,6 +1,6 @@
 use mollusk_svm::{result::Check, Mollusk};
 use solana_account::Account;
-use solana_instruction::{error::InstructionError, AccountMeta, Instruction};
+use solana_instruction::{AccountMeta, Instruction};
 use solana_program_error::ProgramError;
 use solana_pubkey::Pubkey;
 
@@ -47,9 +47,7 @@ fn fail_test_invalid_ascii_no_accounts() {
     mollusk.process_and_validate_instruction(
         &instruction,
         &[],
-        &[Check::instruction_err(
-            InstructionError::ProgramFailedToComplete,
-        )],
+        &[Check::err(ProgramError::InvalidInstructionData)],
     );
 }
 
@@ -136,5 +134,41 @@ fn test_valid_ascii_duplicated_accounts() {
             (unique, Account::default()),
         ],
         &[Check::success()],
+    );
+}
+
+#[test]
+fn test_valid_empty_memo() {
+    let mollusk = Mollusk::new(&PROGRAM_ID, "p_memo");
+
+    let instruction = instruction(&[], None);
+
+    mollusk.process_and_validate_instruction(&instruction, &[], &[Check::success()]);
+}
+
+#[test]
+fn test_valid_max_size_memo() {
+    let mollusk = Mollusk::new(&PROGRAM_ID, "p_memo");
+
+    // Maximum transaction MTU is 1232 bytes.
+    let max_memo = vec![b'A'; 1232];
+    let instruction = instruction(&max_memo, None);
+
+    mollusk.process_and_validate_instruction(&instruction, &[], &[Check::success()]);
+}
+
+#[test]
+fn test_invalid_utf8_error_code() {
+    let mollusk = Mollusk::new(&PROGRAM_ID, "p_memo");
+
+    // Invalid UTF-8 sequence.
+    let invalid_utf8 = [0xF0, 0x9F, 0xFF, 0x86];
+    let instruction = instruction(&invalid_utf8, None);
+
+    // Verify that we return InvalidInstructionData, not ProgramFailedToComplete.
+    mollusk.process_and_validate_instruction(
+        &instruction,
+        &[],
+        &[Check::err(ProgramError::InvalidInstructionData)],
     );
 }

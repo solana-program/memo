@@ -1,7 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "generate:clients": "zx ./scripts/generate-clients.mjs"
+    "generate:clients": "zx ./scripts/generate-clients.mjs",
+    "programs:build": "cargo build-sbf --manifest-path program/Cargo.toml && cargo build-sbf --manifest-path pinocchio/Cargo.toml",
+    "programs:test": "cargo test-sbf --manifest-path program/Cargo.toml && SBF_OUT_DIR=../target/deploy cargo test --manifest-path pinocchio/Cargo.toml",
+    "programs:lint": "cargo clippy --manifest-path program/Cargo.toml && cargo clippy --manifest-path pinocchio/Cargo.toml"
   },
   "devDependencies": {
     "@codama/renderers-js": "^1.5",
