@@ -4,7 +4,6 @@ use pinocchio::{
     syscalls::{sol_log_, sol_log_pubkey},
     ProgramResult,
 };
-use pinocchio_log::log;
 
 /// Process a memo instruction.
 ///
@@ -15,11 +14,12 @@ use pinocchio_log::log;
 pub fn process_instruction(mut context: InstructionContext) -> ProgramResult {
     let mut missing_required_signature = false;
 
-    // Validates signer accounts (if any).
-
     if context.remaining() > 0 {
-        // Logs a message indicating that there are signers.
-        log!("Signed by:");
+        const SIGNED_BY_MSG: &[u8] = b"Signed by:";
+        // SAFETY: Logging a constant string with known valid length.
+        unsafe {
+            sol_log_(SIGNED_BY_MSG.as_ptr(), SIGNED_BY_MSG.len() as u64);
+        }
 
         while context.remaining() > 0 {
             // Duplicated accounts are implicitly checked since at least one of the
@@ -39,13 +39,12 @@ pub fn process_instruction(mut context: InstructionContext) -> ProgramResult {
         }
     }
 
-    // SAFETY: All accounts have been processed.
-    let instruction_data = unsafe { context.instruction_data_unchecked() };
+    let instruction_data = context.instruction_data()?;
 
-    // Logs the length of the memo message and its content.
+    let _memo =
+        core::str::from_utf8(instruction_data).map_err(|_| ProgramError::InvalidInstructionData)?;
 
-    log!("Memo (len {}):", instruction_data.len());
-    // SAFETY: The syscall will validate the UTF-8 encoding of the memo data.
+    // SAFETY: UTF-8 validation passed, syscall will succeed.
     unsafe {
         sol_log_(instruction_data.as_ptr(), instruction_data.len() as u64);
     }
