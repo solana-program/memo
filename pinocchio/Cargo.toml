@@ -19,7 +19,7 @@ level = "warn"
 check-cfg = ['cfg(target_os, values("solana"))']
 
 [dependencies]
-pinocchio = "0.9"
+pinocchio = "0.10"
 pinocchio-log = "0.5"
 
 [dev-dependencies]
