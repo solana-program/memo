@@ -23,7 +23,7 @@ pinocchio = "0.9"
 pinocchio-log = "0.5"
 
 [dev-dependencies]
-mollusk-svm = "0.9"
+mollusk-svm = "0.10"
 solana-account = "3.3.0"
 solana-instruction = "3.1.0"
 solana-program-error = "3.0.0"
