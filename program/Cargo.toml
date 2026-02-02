@@ -21,7 +21,7 @@ spl-memo-interface = { version = "2.0.0", path = "../interface" }
 
 [dev-dependencies]
 mollusk-svm = "0.10.1"
-solana-account = "3.3.0"
+solana-account = "3.4.0"
 
 [lib]
 crate-type = ["cdylib", "lib"]
