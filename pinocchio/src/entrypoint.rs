@@ -18,7 +18,7 @@ pub fn process_instruction(mut context: InstructionContext) -> ProgramResult {
 
     if context.remaining() > 0 {
         // Logs a message indicating that there are signers.
-        log("Signed by:");
+        log!("Signed by:");
 
         while context.remaining() > 0 {
             // Duplicated accounts are implicitly checked since at least one of the
