@@ -3,7 +3,7 @@ use pinocchio::{
     error::ProgramError,
     ProgramResult,
 };
-use solana_program_log::{log, Logger};
+use solana_program_log::log;
 
 /// Process a memo instruction.
 ///
@@ -45,11 +45,7 @@ pub fn process_instruction(mut context: InstructionContext) -> ProgramResult {
     let instruction_data = unsafe { context.instruction_data_unchecked() };
 
     // Logs the length of the memo message and its content.
-    let mut logger = Logger::<80>::default();
-    logger.append("Memo (len ");
-    logger.append(instruction_data.len());
-    logger.append("):");
-    logger.log();
+    log!("Memo (len {})", instruction_data.len());
 
     // SAFETY: The syscall will validate the UTF-8 encoding of the memo data.
     #[cfg(any(target_os = "solana", target_arch = "bpf"))]
