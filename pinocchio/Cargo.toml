@@ -19,8 +19,8 @@ level = "warn"
 check-cfg = ['cfg(target_os, values("solana"))']
 
 [dependencies]
-pinocchio = "0.9"
-pinocchio-log = "0.5"
+pinocchio = "0.10"
+solana-program-log = "1.1"
 
 [dev-dependencies]
 mollusk-svm = "0.10"

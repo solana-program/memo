@@ -1,10 +1,9 @@
 use pinocchio::{
     entrypoint::{InstructionContext, MaybeAccount},
-    program_error::ProgramError,
-    syscalls::{sol_log_, sol_log_pubkey},
+    error::ProgramError,
     ProgramResult,
 };
-use pinocchio_log::log;
+use solana_program_log::log;
 
 /// Process a memo instruction.
 ///
@@ -27,7 +26,10 @@ pub fn process_instruction(mut context: InstructionContext) -> ProgramResult {
             if let MaybeAccount::Account(account) = context.next_account()? {
                 if account.is_signer() {
                     // SAFETY: Use the syscall to log the public key of the account.
-                    unsafe { sol_log_pubkey(account.key().as_ptr()) };
+                    #[cfg(any(target_os = "solana", target_arch = "bpf"))]
+                    unsafe {
+                        pinocchio::syscalls::sol_log_pubkey(account.address().as_array().as_ptr())
+                    };
                 } else {
                     missing_required_signature = true;
                 }
@@ -43,11 +45,12 @@ pub fn process_instruction(mut context: InstructionContext) -> ProgramResult {
     let instruction_data = unsafe { context.instruction_data_unchecked() };
 
     // Logs the length of the memo message and its content.
+    log!("Memo (len {})", instruction_data.len());
 
-    log!("Memo (len {}):", instruction_data.len());
     // SAFETY: The syscall will validate the UTF-8 encoding of the memo data.
+    #[cfg(any(target_os = "solana", target_arch = "bpf"))]
     unsafe {
-        sol_log_(instruction_data.as_ptr(), instruction_data.len() as u64);
+        pinocchio::syscalls::sol_log_(instruction_data.as_ptr(), instruction_data.len() as u64);
     }
 
     Ok(())
