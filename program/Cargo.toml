@@ -20,7 +20,7 @@ solana-pubkey = "4.0.0"
 spl-memo-interface = { version = "2.0.0", path = "../interface" }
 
 [dev-dependencies]
-mollusk-svm = "0.10.1"
+mollusk-svm = "0.10.2"
 solana-account = "3.4.0"
 
 [lib]
