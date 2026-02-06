@@ -10,14 +10,12 @@ import { type Address } from '@solana/kit';
 import { type ParsedAddMemoInstruction } from '../instructions';
 
 export const MEMO_PROGRAM_ADDRESS =
-  'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr' as Address<'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'>;
+    'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr' as Address<'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'>;
 
 export enum MemoInstruction {
-  AddMemo,
+    AddMemo,
 }
 
-export type ParsedMemoInstruction<
-  TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',
-> = {
-  instructionType: MemoInstruction.AddMemo;
+export type ParsedMemoInstruction<TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'> = {
+    instructionType: MemoInstruction.AddMemo;
 } & ParsedAddMemoInstruction<TProgram>;
