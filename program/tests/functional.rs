@@ -98,7 +98,7 @@ fn test_memo_compute_limits() {
     mollusk.process_and_validate_instruction(
         &build_memo(&memo[..600], &[]),
         &[],
-        &[Check::success(), Check::compute_units(8_674)],
+        &[Check::success(), Check::compute_units(8_503)],
     );
 
     let mut memo = vec![];
@@ -116,7 +116,7 @@ fn test_memo_compute_limits() {
     mollusk.process_and_validate_instruction(
         &build_memo(&memo[..63], &[]),
         &[],
-        &[Check::success(), Check::compute_units(67_468)],
+        &[Check::success(), Check::compute_units(62_887)],
     );
 
     // Test num signers with 32-byte memo
@@ -146,6 +146,6 @@ fn test_memo_compute_limits() {
             .map(|k| (*k, Account::default()))
             .collect::<Vec<_>>()
             .as_slice(),
-        &[Check::success(), Check::compute_units(30_900)],
+        &[Check::success(), Check::compute_units(31_788)],
     );
 }
