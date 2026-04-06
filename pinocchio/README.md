@@ -4,10 +4,10 @@ A `pinocchio`-based Memo program.
 
 ## Overview
 
-`p-memo` is a reimplementation of the SPL Memo program using [`pinocchio`](https://github.com/anza-xyz/pinocchio). The program uses at most `~5%` of the compute units used by the current Memo program when signers are present; even when there are no signers, it needs only `~20%` of the current Memo program compute units. This efficiency is achieved by a combination of:
+`p-memo` is a reimplementation of the SPL Memo program using [`pinocchio`](https://github.com/anza-xyz/pinocchio). The program uses at most `~4%` of the compute units used by the current Memo program when signers are present; even when there are no signers, it needs only `~15%` of the current Memo program compute units. This efficiency is achieved by a combination of:
 1. `pinocchio` "lazy" entrypoint
 2. `sol_log_pubkey` syscall to log pubkey values
-3. [`pinocchio-log`](https://crates.io/crates/pinocchio-log) to format the memo message
+3. [`solana-program-log`](https://crates.io/crates/solana-program-log) to format the memo message
 
 Since it uses the syscall to log pubkeys, the output of the program is slightly different while loging the same information:
 ```
