@@ -15,3 +15,8 @@ pub mod v1 {
 pub mod v3 {
     solana_pubkey::declare_id!("MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr");
 }
+
+/// Symbols from Memo version 4
+pub mod v4 {
+    solana_pubkey::declare_id!("Memo4c2pN8afCj432Lb7RMVKi9PbQnnW7ewFFaV3oAH");
+}
