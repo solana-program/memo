@@ -1,9 +1,11 @@
-use pinocchio::{
-    entrypoint::{InstructionContext, MaybeAccount},
-    error::ProgramError,
-    ProgramResult,
+use {
+    pinocchio::{
+        entrypoint::{InstructionContext, MaybeAccount},
+        error::ProgramError,
+        ProgramResult,
+    },
+    solana_program_log::log,
 };
-use solana_program_log::log;
 
 /// Process a memo instruction.
 ///
