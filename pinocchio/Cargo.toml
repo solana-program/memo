@@ -12,15 +12,15 @@ publish = false
 crate-type = ["cdylib"]
 
 [package.metadata.solana]
-program-id = "PMemo11111111111111111111111111111111111111"
+program-id = "Memo4c2pN8afCj432Lb7RMVKi9PbQnnW7ewFFaV3oAH"
 
 [lints.rust.unexpected_cfgs]
 level = "warn"
 check-cfg = ['cfg(target_os, values("solana"))']
 
 [dependencies]
-pinocchio = "0.11"
-solana-program-log = "1.1"
+pinocchio = { version = "0.11", default-features = false }
+solana-program-log = "1.2"
 
 [dev-dependencies]
 mollusk-svm = "0.12"

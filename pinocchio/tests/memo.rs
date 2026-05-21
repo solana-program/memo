@@ -5,7 +5,7 @@ use solana_program_error::ProgramError;
 use solana_pubkey::Pubkey;
 
 /// Program ID for the p-memo program.
-const PROGRAM_ID: Pubkey = Pubkey::from_str_const("PMemo11111111111111111111111111111111111111");
+const PROGRAM_ID: Pubkey = Pubkey::from_str_const("Memo4c2pN8afCj432Lb7RMVKi9PbQnnW7ewFFaV3oAH");
 
 /// The memo to be printed.
 const MEMO: &str = "why does spl memo use 36000 cus to print len 60 msg of ascii";
