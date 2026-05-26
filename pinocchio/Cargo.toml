@@ -7,7 +7,6 @@ repository = "https://github.com/solana-program/memo"
 license = "Apache-2.0"
 edition = "2021"
 readme = "./README.md"
-publish = false
 
 [lib]
 crate-type = ["cdylib"]
