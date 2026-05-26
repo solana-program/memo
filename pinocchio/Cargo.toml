@@ -1,5 +1,5 @@
 [package]
-name = "p-memo"
+name = "pinocchio-memo-program"
 version = "0.0.0"
 description = "A pinocchio-based Memo program"
 authors = ["Anza Maintainers <maintainers@anza.xyz>"]
@@ -7,7 +7,6 @@ repository = "https://github.com/solana-program/memo"
 license = "Apache-2.0"
 edition = "2021"
 readme = "./README.md"
-publish = false
 
 [lib]
 crate-type = ["cdylib"]
