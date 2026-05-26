@@ -2,7 +2,8 @@
 name = "p-memo"
 version = "0.0.0"
 description = "A pinocchio-based Memo program"
-repository = "https://github.com/febo/p-memo"
+authors = ["Anza Maintainers <maintainers@anza.xyz>"]
+repository = "https://github.com/solana-program/memo"
 license = "Apache-2.0"
 edition = "2021"
 readme = "./README.md"
