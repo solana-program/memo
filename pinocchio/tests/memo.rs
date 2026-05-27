@@ -31,7 +31,7 @@ fn instruction(message: &[u8], signers: Option<&[Pubkey]>) -> Instruction {
 
 #[test]
 fn test_valid_ascii_no_accounts() {
-    let mollusk = Mollusk::new(&PROGRAM_ID, "p_memo");
+    let mollusk = Mollusk::new(&PROGRAM_ID, "pinocchio_memo_program");
 
     let instruction = instruction(MEMO.as_bytes(), None);
 
@@ -40,7 +40,7 @@ fn test_valid_ascii_no_accounts() {
 
 #[test]
 fn fail_test_invalid_ascii_no_accounts() {
-    let mollusk = Mollusk::new(&PROGRAM_ID, "p_memo");
+    let mollusk = Mollusk::new(&PROGRAM_ID, "pinocchio_memo_program");
 
     let instruction = instruction(&[255, 255], None);
 
@@ -55,7 +55,7 @@ fn fail_test_invalid_ascii_no_accounts() {
 
 #[test]
 fn test_valid_ascii_one_accounts() {
-    let mollusk = Mollusk::new(&PROGRAM_ID, "p_memo");
+    let mollusk = Mollusk::new(&PROGRAM_ID, "pinocchio_memo_program");
 
     let signer = Pubkey::new_unique();
     let instruction = instruction(MEMO.as_bytes(), Some(&[signer]));
@@ -69,7 +69,7 @@ fn test_valid_ascii_one_accounts() {
 
 #[test]
 fn fail_test_invalid_missing_signer() {
-    let mollusk = Mollusk::new(&PROGRAM_ID, "p_memo");
+    let mollusk = Mollusk::new(&PROGRAM_ID, "pinocchio_memo_program");
 
     let signer = Pubkey::new_unique();
     let mut instruction = instruction(MEMO.as_bytes(), Some(&[signer]));
@@ -85,7 +85,7 @@ fn fail_test_invalid_missing_signer() {
 
 #[test]
 fn test_valid_ascii_two_accounts() {
-    let mollusk = Mollusk::new(&PROGRAM_ID, "p_memo");
+    let mollusk = Mollusk::new(&PROGRAM_ID, "pinocchio_memo_program");
 
     let signers = [Pubkey::new_unique(), Pubkey::new_unique()];
     let instruction = instruction(MEMO.as_bytes(), Some(&signers));
@@ -102,7 +102,7 @@ fn test_valid_ascii_two_accounts() {
 
 #[test]
 fn test_valid_ascii_three_accounts() {
-    let mollusk = Mollusk::new(&PROGRAM_ID, "p_memo");
+    let mollusk = Mollusk::new(&PROGRAM_ID, "pinocchio_memo_program");
 
     let signers = [
         Pubkey::new_unique(),
@@ -123,7 +123,7 @@ fn test_valid_ascii_three_accounts() {
 
 #[test]
 fn test_valid_ascii_duplicated_accounts() {
-    let mollusk = Mollusk::new(&PROGRAM_ID, "p_memo");
+    let mollusk = Mollusk::new(&PROGRAM_ID, "pinocchio_memo_program");
 
     let unique = Pubkey::new_unique();
     let duplicated = Pubkey::new_unique();
