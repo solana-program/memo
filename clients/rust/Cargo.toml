@@ -9,18 +9,20 @@ license-file = "../../LICENSE"
 
 [features]
 test-sbf = []
-serde = ["dep:serde", "dep:serde_with", "kaigan/serde"]
 
 [dependencies]
-borsh = "^0.10"
-kaigan = "0.5.0"
+borsh = "^1.0"
 num-derive = "^0.4"
 num-traits = "^0.2"
-serde = { version = "^1.0", features = ["derive"], optional = true }
-serde_with = { version = "^3.20", optional = true }
 solana-account-info = "3.1.1"
+solana-address = { version = "~2.4", features = [
+  'borsh',
+  'copy',
+  'curve25519',
+  'decode',
+] }
 solana-cpi = "3.1.0"
 solana-instruction = "3.4.0"
-solana-program-entrypoint = "3.1.1"
-solana-pubkey = "4.2.0"
+solana-program-error = "3.0.1"
+spl-collections = { version = "^0.1", features = ["borsh"] }
 thiserror = "^2.0"

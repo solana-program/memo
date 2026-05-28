@@ -1,8 +1,8 @@
 {
     "private": true,
     "devDependencies": {
-        "@codama/renderers-js": "^1.7",
-        "@codama/renderers-rust": "~1.1",
+        "@codama/renderers-js": "^2.2.0",
+        "@codama/renderers-rust": "^3.0.0",
         "@solana/prettier-config-solana": "0.0.6",
         "codama": "^1.6",
         "typescript": "^5.9.3"
