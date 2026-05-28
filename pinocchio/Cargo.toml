@@ -1,6 +1,6 @@
 [package]
 name = "pinocchio-memo-program"
-version = "0.0.0"
+version = "1.0.0"
 description = "A pinocchio-based Memo program"
 authors = ["Anza Maintainers <maintainers@anza.xyz>"]
 repository = "https://github.com/solana-program/memo"
