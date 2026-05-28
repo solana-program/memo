@@ -5,20 +5,18 @@
         "js": {
             "from": "@codama/renderers-js",
             "args": [
-                "clients/js/src/generated",
+                "clients/js",
                 {
-                    "packageFolder": "clients/js",
-                    "syncPackageJson": true
+                    "kitImportStrategy": "rootOnly"
                 }
             ]
         },
         "rust": {
             "from": "@codama/renderers-rust",
             "args": [
-                "clients/rust/src/generated",
+                "clients/rust",
                 {
                     "anchorTraits": false,
-                    "crateFolder": "clients/rust",
                     "formatCode": true,
                     "toolchain": "+nightly-2026-01-22"
                 }

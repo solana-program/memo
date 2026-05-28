@@ -1,35 +1,28 @@
-import { appendTransactionMessageInstruction, getBase58Encoder, getUtf8Decoder, pipe } from '@solana/kit';
+import { getBase58Encoder, getUtf8Decoder } from '@solana/kit';
 import test from 'ava';
-import { getAddMemoInstruction } from '../src';
-import {
-    createDefaultSolanaClient,
-    createDefaultTransaction,
-    generateKeyPairSignerWithSol,
-    signAndSendTransaction,
-} from './_setup';
+import { MEMO_PROGRAM_ADDRESS } from '../src';
+import { createTestClient } from './_setup';
 
 test('it adds custom text to the transaction logs', async t => {
-    // Given a payer wallet.
-    const client = createDefaultSolanaClient();
-    const payer = await generateKeyPairSignerWithSol(client);
+    // Given a client with an airdropped payer.
+    const client = await createTestClient();
 
-    // When we create a transaction with a custom memo.
-    const addMemo = getAddMemoInstruction({ memo: 'Hello world!' });
-    const signature = await pipe(
-        await createDefaultTransaction(client, payer),
-        tx => appendTransactionMessageInstruction(addMemo, tx),
-        tx => signAndSendTransaction(client, tx),
-    );
+    // When the payer sends a transaction with a custom memo.
+    const {
+        context: { signature },
+    } = await client.memo.instructions.addMemo({ memo: 'Hello world!' }).sendTransaction();
 
-    // Then the instruction data contains our memo.
+    // Then the instruction data of the memo instruction contains our memo text.
     const result = await client.rpc
         .getTransaction(signature, {
             encoding: 'json',
             maxSupportedTransactionVersion: 0,
         })
         .send();
-    const instructionDataBase58 = result!.transaction.message.instructions[0].data;
-    const instructionDataBytes = getBase58Encoder().encode(instructionDataBase58);
+    const { accountKeys, instructions } = result!.transaction.message;
+    const memoInstruction = instructions.find(ix => accountKeys[ix.programIdIndex] === MEMO_PROGRAM_ADDRESS);
+    t.truthy(memoInstruction, 'expected a memo instruction in the transaction');
+    const instructionDataBytes = getBase58Encoder().encode(memoInstruction!.data);
     const instructionMemo = getUtf8Decoder().decode(instructionDataBytes);
     t.is(instructionMemo, 'Hello world!');
 });

@@ -7,7 +7,7 @@
 
 use borsh::BorshDeserialize;
 use borsh::BorshSerialize;
-use kaigan::types::RemainderStr;
+use spl_collections::TrailingStr;
 
 /// Accounts.
 #[derive(Debug)]
@@ -26,8 +26,8 @@ impl AddMemo {
     ) -> solana_instruction::Instruction {
         let mut accounts = Vec::with_capacity(remaining_accounts.len());
         accounts.extend_from_slice(remaining_accounts);
-        let mut data = borsh::to_vec(&AddMemoInstructionData::new()).unwrap();
-        let mut args = borsh::to_vec(&args).unwrap();
+        let mut data = AddMemoInstructionData::new().try_to_vec().unwrap();
+        let mut args = args.try_to_vec().unwrap();
         data.append(&mut args);
 
         solana_instruction::Instruction {
@@ -39,12 +39,15 @@ impl AddMemo {
 }
 
 #[derive(BorshSerialize, BorshDeserialize, Clone, Debug, Eq, PartialEq)]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct AddMemoInstructionData {}
 
 impl AddMemoInstructionData {
     pub fn new() -> Self {
         Self {}
+    }
+
+    pub(crate) fn try_to_vec(&self) -> Result<Vec<u8>, std::io::Error> {
+        borsh::to_vec(self)
     }
 }
 
@@ -55,9 +58,14 @@ impl Default for AddMemoInstructionData {
 }
 
 #[derive(BorshSerialize, BorshDeserialize, Clone, Debug, Eq, PartialEq)]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct AddMemoInstructionArgs {
-    pub memo: RemainderStr,
+    pub memo: TrailingStr,
+}
+
+impl AddMemoInstructionArgs {
+    pub(crate) fn try_to_vec(&self) -> Result<Vec<u8>, std::io::Error> {
+        borsh::to_vec(self)
+    }
 }
 
 /// Instruction builder for `AddMemo`.
@@ -66,7 +74,7 @@ pub struct AddMemoInstructionArgs {
 ///
 #[derive(Clone, Debug, Default)]
 pub struct AddMemoBuilder {
-    memo: Option<RemainderStr>,
+    memo: Option<TrailingStr>,
     __remaining_accounts: Vec<solana_instruction::AccountMeta>,
 }
 
@@ -75,7 +83,7 @@ impl AddMemoBuilder {
         Self::default()
     }
     #[inline(always)]
-    pub fn memo(&mut self, memo: RemainderStr) -> &mut Self {
+    pub fn memo(&mut self, memo: TrailingStr) -> &mut Self {
         self.memo = Some(memo);
         self
     }
@@ -124,21 +132,18 @@ impl<'a, 'b> AddMemoCpi<'a, 'b> {
         }
     }
     #[inline(always)]
-    pub fn invoke(&self) -> solana_program_entrypoint::ProgramResult {
+    pub fn invoke(&self) -> solana_program_error::ProgramResult {
         self.invoke_signed_with_remaining_accounts(&[], &[])
     }
     #[inline(always)]
     pub fn invoke_with_remaining_accounts(
         &self,
         remaining_accounts: &[(&'b solana_account_info::AccountInfo<'a>, bool, bool)],
-    ) -> solana_program_entrypoint::ProgramResult {
+    ) -> solana_program_error::ProgramResult {
         self.invoke_signed_with_remaining_accounts(&[], remaining_accounts)
     }
     #[inline(always)]
-    pub fn invoke_signed(
-        &self,
-        signers_seeds: &[&[&[u8]]],
-    ) -> solana_program_entrypoint::ProgramResult {
+    pub fn invoke_signed(&self, signers_seeds: &[&[&[u8]]]) -> solana_program_error::ProgramResult {
         self.invoke_signed_with_remaining_accounts(signers_seeds, &[])
     }
     #[allow(clippy::arithmetic_side_effects)]
@@ -148,7 +153,7 @@ impl<'a, 'b> AddMemoCpi<'a, 'b> {
         &self,
         signers_seeds: &[&[&[u8]]],
         remaining_accounts: &[(&'b solana_account_info::AccountInfo<'a>, bool, bool)],
-    ) -> solana_program_entrypoint::ProgramResult {
+    ) -> solana_program_error::ProgramResult {
         let mut accounts = Vec::with_capacity(remaining_accounts.len());
         remaining_accounts.iter().for_each(|remaining_account| {
             accounts.push(solana_instruction::AccountMeta {
@@ -157,8 +162,8 @@ impl<'a, 'b> AddMemoCpi<'a, 'b> {
                 is_writable: remaining_account.2,
             })
         });
-        let mut data = borsh::to_vec(&AddMemoInstructionData::new()).unwrap();
-        let mut args = borsh::to_vec(&self.__args).unwrap();
+        let mut data = AddMemoInstructionData::new().try_to_vec().unwrap();
+        let mut args = self.__args.try_to_vec().unwrap();
         data.append(&mut args);
 
         let instruction = solana_instruction::Instruction {
@@ -199,7 +204,7 @@ impl<'a, 'b> AddMemoCpiBuilder<'a, 'b> {
         Self { instruction }
     }
     #[inline(always)]
-    pub fn memo(&mut self, memo: RemainderStr) -> &mut Self {
+    pub fn memo(&mut self, memo: TrailingStr) -> &mut Self {
         self.instruction.memo = Some(memo);
         self
     }
@@ -231,15 +236,12 @@ impl<'a, 'b> AddMemoCpiBuilder<'a, 'b> {
         self
     }
     #[inline(always)]
-    pub fn invoke(&self) -> solana_program_entrypoint::ProgramResult {
+    pub fn invoke(&self) -> solana_program_error::ProgramResult {
         self.invoke_signed(&[])
     }
     #[allow(clippy::clone_on_copy)]
     #[allow(clippy::vec_init_then_push)]
-    pub fn invoke_signed(
-        &self,
-        signers_seeds: &[&[&[u8]]],
-    ) -> solana_program_entrypoint::ProgramResult {
+    pub fn invoke_signed(&self, signers_seeds: &[&[&[u8]]]) -> solana_program_error::ProgramResult {
         let args = AddMemoInstructionArgs {
             memo: self.instruction.memo.clone().expect("memo is not set"),
         };
@@ -257,7 +259,7 @@ impl<'a, 'b> AddMemoCpiBuilder<'a, 'b> {
 #[derive(Clone, Debug)]
 struct AddMemoCpiBuilderInstruction<'a, 'b> {
     __program: &'b solana_account_info::AccountInfo<'a>,
-    memo: Option<RemainderStr>,
+    memo: Option<TrailingStr>,
     /// Additional instruction accounts `(AccountInfo, is_writable, is_signer)`.
     __remaining_accounts: Vec<(&'b solana_account_info::AccountInfo<'a>, bool, bool)>,
 }
