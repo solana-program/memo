@@ -12,6 +12,9 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
     devDependencies:
+      '@solana/prettier-config-solana':
+        specifier: 0.0.6
+        version: 0.0.6(prettier@3.8.3)
       '@solana/web3.js':
         specifier: ^1.95.5
         version: 1.95.5(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -49,8 +52,8 @@ importers:
         specifier: ^29.0.0
         version: 29.7.0(@types/node@22.10.0)(ts-node@10.9.2(@types/node@22.10.0)(typescript@5.7.2))
       prettier:
-        specifier: ^3.3.3
-        version: 3.6.2
+        specifier: ^3.7.4
+        version: 3.8.3
       process:
         specifier: ^0.11.10
         version: 0.11.10
@@ -440,6 +443,11 @@ packages:
   '@solana/buffer-layout@4.0.1':
     resolution: {integrity: sha512-E1ImOIAD1tBZFRdjeM4/pzTiTApC0AOBGwyAMS4fwIodCWArzJ3DWdoh8cKxeFM2fElkxBh2Aqts1BPC373rHA==}
     engines: {node: '>=5.10'}
+
+  '@solana/prettier-config-solana@0.0.6':
+    resolution: {integrity: sha512-/s55hDoAyh5QyltQh/jjNK3AgACEq885+DnC6lYhrmYZiV6I0iHITWYnKd8d23KRKs/RBjlaQH54MiafeoI9hw==}
+    peerDependencies:
+      prettier: ^3.7.4
 
   '@solana/web3.js@1.95.5':
     resolution: {integrity: sha512-hU9cBrbg1z6gEjLH9vwIckGBVB78Ijm0iZFNk4ocm5OD82piPwuk3MeQ1rfiKD9YQtr95krrcaopb49EmQJlRg==}
@@ -1812,8 +1820,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.6.2:
-    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
+  prettier@3.8.3:
+    resolution: {integrity: sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -2789,6 +2797,10 @@ snapshots:
   '@solana/buffer-layout@4.0.1':
     dependencies:
       buffer: 6.0.3
+
+  '@solana/prettier-config-solana@0.0.6(prettier@3.8.3)':
+    dependencies:
+      prettier: 3.8.3
 
   '@solana/web3.js@1.95.5(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
     dependencies:
@@ -4420,7 +4432,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@3.6.2: {}
+  prettier@3.8.3: {}
 
   pretty-format@29.7.0:
     dependencies:
