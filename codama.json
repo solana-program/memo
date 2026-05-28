@@ -7,7 +7,13 @@
             "args": [
                 "clients/js",
                 {
-                    "kitImportStrategy": "rootOnly"
+                    "kitImportStrategy": "rootOnly",
+                    "prettierOptions": {
+                        "arrowParens": "avoid",
+                        "printWidth": 120,
+                        "singleQuote": true,
+                        "tabWidth": 4
+                    }
                 }
             ]
         },
