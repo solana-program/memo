@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["clients/rust", "interface", "pinocchio", "program"]
+members = ["clients/rust", "interface", "program"]
 
 [workspace.lints.rust.unexpected_cfgs]
 level = "warn"
