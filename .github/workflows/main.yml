@@ -8,9 +8,9 @@ on:
 
 env:
   JS_PACKAGES: "['clients-js', 'clients-js-legacy']"
-  SBPF_PROGRAM_PACKAGES: "['program', 'pinocchio']"
-  RUST_PACKAGES: "['clients-rust', 'interface', 'pinocchio', 'program']"
-  WASM_PACKAGES: "['clients-rust', 'interface', 'pinocchio', 'program']"
+  SBPF_PROGRAM_PACKAGES: "['program']"
+  RUST_PACKAGES: "['clients-rust', 'interface', 'program']"
+  WASM_PACKAGES: "['clients-rust', 'interface', 'program']"
 
 jobs:
   set_env:
