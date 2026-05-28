@@ -2,7 +2,7 @@
 use {
     mollusk_svm::{result::Check, Mollusk},
     solana_account::Account,
-    solana_instruction::{AccountMeta, Instruction},
+    solana_instruction::{error::InstructionError, AccountMeta, Instruction},
     solana_program_error::ProgramError,
     solana_pubkey::Pubkey,
     spl_memo_interface::{instruction::build_memo, v4::id},
@@ -79,7 +79,9 @@ fn test_memo_signing() {
     mollusk.process_and_validate_instruction(
         &build_memo(&id(), &invalid_utf8, &[]),
         &[],
-        &[Check::err(ProgramError::InvalidInstructionData)],
+        &[Check::instruction_err(
+            InstructionError::ProgramFailedToComplete,
+        )],
     );
 }
 
@@ -103,7 +105,7 @@ fn test_memo_compute_limits() {
     mollusk.process_and_validate_instruction(
         &build_memo(&id(), &memo[..600], &[]),
         &[],
-        &[Check::success(), Check::compute_units(8_503)],
+        &[Check::success(), Check::compute_units(800)],
     );
 
     let mut memo = vec![];
@@ -121,7 +123,7 @@ fn test_memo_compute_limits() {
     mollusk.process_and_validate_instruction(
         &build_memo(&id(), &memo[..63], &[]),
         &[],
-        &[Check::success(), Check::compute_units(62_887)],
+        &[Check::success(), Check::compute_units(287)],
     );
 
     // Test num signers with 32-byte memo
@@ -151,6 +153,6 @@ fn test_memo_compute_limits() {
             .map(|k| (*k, Account::default()))
             .collect::<Vec<_>>()
             .as_slice(),
-        &[Check::success(), Check::compute_units(31_788)],
+        &[Check::success(), Check::compute_units(2123)],
     );
 }
