@@ -1,9 +1,10 @@
 import { getBase58Encoder, getUtf8Decoder } from '@solana/kit';
-import test from 'ava';
+import { expect, it } from 'vitest';
+
 import { MEMO_PROGRAM_ADDRESS } from '../src';
 import { createTestClient } from './_setup';
 
-test('it adds custom text to the transaction logs', async t => {
+it('adds custom text to the transaction logs', async () => {
     // Given a client with an airdropped payer.
     const client = await createTestClient();
 
@@ -21,8 +22,8 @@ test('it adds custom text to the transaction logs', async t => {
         .send();
     const { accountKeys, instructions } = result!.transaction.message;
     const memoInstruction = instructions.find(ix => accountKeys[ix.programIdIndex] === MEMO_PROGRAM_ADDRESS);
-    t.truthy(memoInstruction, 'expected a memo instruction in the transaction');
+    expect(memoInstruction).toBeTruthy();
     const instructionDataBytes = getBase58Encoder().encode(memoInstruction!.data);
     const instructionMemo = getUtf8Decoder().decode(instructionDataBytes);
-    t.is(instructionMemo, 'Hello world!');
+    expect(instructionMemo).toBe('Hello world!');
 });
