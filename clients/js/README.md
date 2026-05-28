@@ -4,24 +4,19 @@ A generated JavaScript library for the Memo program.
 
 ## Getting started
 
-To build and test your JavaScript client from the root of the repository, you may use the following command.
+The JS client tests use [LiteSVM](https://github.com/LiteSVM/litesvm) in-process, so no local validator is needed. From the root of the repository:
 
 ```sh
-pnpm clients:js:test
+make test-js-clients-js
 ```
 
-This will start a new local validator, if one is not already running, and run the tests for your JavaScript client.
+This installs dependencies, builds the client, and runs the test suite. The memo program is loaded into LiteSVM from the `.so` artifact that CI's `build-sbf-program` job (or your local `make build-sbf-program`) emits to `target/deploy/spl_memo.so`.
 
-## Available client scripts.
+## Available client scripts
 
-Alternatively, you can go into the client directory and run the tests directly.
+Alternatively, you can go into the client directory and run the scripts directly.
 
 ```sh
-# Build your programs and start the validator.
-pnpm programs:build
-pnpm validator:restart
-
-# Go into the client directory and run the tests.
 cd clients/js
 pnpm install
 pnpm build
@@ -36,3 +31,5 @@ pnpm lint:fix
 pnpm format
 pnpm format:fix
 ```
+
+Equivalent `make` targets from the repo root are `make lint-js-clients-js` and `make format-check-js-clients-js`.

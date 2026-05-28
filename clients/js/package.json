@@ -49,7 +49,7 @@
     "devDependencies": {
         "@solana/eslint-config-solana": "^3.0.3",
         "@solana/kit": "^6.9.0",
-        "@solana/kit-plugin-rpc": "^0.11.1",
+        "@solana/kit-plugin-litesvm": "^0.10.0",
         "@solana/kit-plugin-signer": "^0.10.0",
         "@types/node": "^24",
         "@typescript-eslint/eslint-plugin": "^7.16.1",

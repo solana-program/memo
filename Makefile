@@ -83,6 +83,12 @@ format-check-js-%:
 lint-js-%:
 	cd $(call make-path,$*) && pnpm install && pnpm lint $(ARGS)
 
+# LiteSVM-flavoured: no validator needed for the Kit-based JS client.
+test-js-clients-js:
+	cd clients/js && pnpm install && pnpm build && pnpm test $(ARGS)
+
+# Validator-flavoured: still needed for clients-js-legacy (jest e2e tests
+# against a live local validator at http://127.0.0.1:8899).
 test-js-%:
 	make restart-test-validator
 	cd $(call make-path,$*) && pnpm install && pnpm build && pnpm test $(ARGS)
