@@ -21,13 +21,7 @@ cargo-nightly:
 	cargo $(nightly) $(ARGS)
 
 audit:
-	cargo audit \
-		--ignore RUSTSEC-2024-0388 \
-		--ignore RUSTSEC-2024-0436 \
-		--ignore RUSTSEC-2025-0141 \
-		--ignore RUSTSEC-2025-0161 \
-		--ignore RUSTSEC-2026-0097 \
-		$(ARGS)
+	cargo audit $(ARGS)
 
 spellcheck:
 	cargo spellcheck --code 1 $(ARGS)
