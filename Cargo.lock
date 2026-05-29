@@ -1478,7 +1478,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d707cea2843c1a2fd8ec49e4116ce3fdaedcd552a3ee168b03ce60e627fc0f62"
 dependencies = [
  "solana-account-view",
- "solana-address 2.4.0",
+ "solana-address 2.6.0",
  "solana-define-syscall 5.1.0",
  "solana-program-error",
 ]
@@ -1881,7 +1881,7 @@ version = "3.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a9cf16495d9eb53e3d04e72366a33bb1c20c24e78c171d8b8f5978357b63ae95"
 dependencies = [
- "solana-address 2.4.0",
+ "solana-address 2.6.0",
  "solana-program-error",
  "solana-program-memory",
 ]
@@ -1892,7 +1892,7 @@ version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fc141b940560430425ebaadb7645496c45f6a10fad9911d719bd03eab7f4d422"
 dependencies = [
- "solana-address 2.4.0",
+ "solana-address 2.6.0",
  "solana-program-error",
 ]
 
@@ -1902,14 +1902,14 @@ version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a2ecac8e1b7f74c2baa9e774c42817e3e75b20787134b76cc4d45e8a604488f5"
 dependencies = [
- "solana-address 2.4.0",
+ "solana-address 2.6.0",
 ]
 
 [[package]]
 name = "solana-address"
-version = "2.4.0"
+version = "2.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7f67735365edc7fb19ed74ec950597107c8ee9cbfebac57b8868b3e78fb6df16"
+checksum = "f1384b52c435a750cc9c538760fc7bb472fd78e65a9900a2d07312c5bb335b72"
 dependencies = [
  "borsh",
  "curve25519-dalek",
@@ -1923,7 +1923,7 @@ dependencies = [
  "solana-program-error",
  "solana-sanitize",
  "solana-sha256-hasher",
- "wincode 0.4.9",
+ "wincode",
 ]
 
 [[package]]
@@ -2148,7 +2148,7 @@ dependencies = [
  "serde_derive",
  "solana-atomic-u64",
  "solana-sanitize",
- "wincode 0.5.1",
+ "wincode",
 ]
 
 [[package]]
@@ -2268,7 +2268,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0448b1fd891c5f46491e5dc7d9986385ba3c852c340db2911dd29faa01d2b08d"
 dependencies = [
  "lazy_static",
- "solana-address 2.4.0",
+ "solana-address 2.6.0",
  "solana-hash 4.3.0",
  "solana-instruction",
  "solana-sanitize",
@@ -2451,7 +2451,7 @@ version = "4.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7db719574990de7e8b0f55a8593ac92a5ccb42c8ce67b3e4bf05b139d5d9ee71"
 dependencies = [
- "solana-address 2.4.0",
+ "solana-address 2.6.0",
 ]
 
 [[package]]
@@ -2496,7 +2496,7 @@ version = "3.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "def234c1956ff616d46c9dd953f251fa7096ddbaa6d52b165218de97882b7280"
 dependencies = [
- "solana-address 2.4.0",
+ "solana-address 2.6.0",
 ]
 
 [[package]]
@@ -2755,7 +2755,7 @@ version = "3.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "17358d1e9a13e5b9c2264d301102126cf11a47fd394cdf3dec174fe7bc96e1de"
 dependencies = [
- "solana-address 2.4.0",
+ "solana-address 2.6.0",
  "solana-sdk-ids",
 ]
 
@@ -2765,7 +2765,7 @@ version = "3.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "96697cff5075a028265324255efed226099f6d761ca67342b230d09f72cc48d2"
 dependencies = [
- "solana-address 2.4.0",
+ "solana-address 2.6.0",
  "solana-hash 4.3.0",
  "solana-instruction",
  "solana-instruction-error",
@@ -2846,7 +2846,7 @@ dependencies = [
  "num-derive",
  "num-traits",
  "solana-account-info",
- "solana-address 2.4.0",
+ "solana-address 2.6.0",
  "solana-cpi",
  "solana-instruction",
  "solana-program-error",
@@ -3062,19 +3062,6 @@ name = "winapi-x86_64-pc-windows-gnu"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
-
-[[package]]
-name = "wincode"
-version = "0.4.9"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "657690780ce23e6f66576a782ffd88eb353512381817029cc1d7a99154bb6d1f"
-dependencies = [
- "pastey",
- "proc-macro2",
- "quote",
- "thiserror 2.0.18",
- "wincode-derive",
-]
 
 [[package]]
 name = "wincode"
