@@ -44,14 +44,17 @@ jobs:
       TARGET: ${{ steps.compute.outputs.TARGET }}
     steps:
       - name: Git Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Summarise workflow inputs
+        uses: solana-program/actions/workflow-inputs@v1
 
       - name: Compute variables
         id: compute
         shell: bash
         run: |
           echo "SOLANA_CLI_VERSION=$(make solana-cli-version)" >> "$GITHUB_OUTPUT"
-          TARGET=$(echo ${{ inputs.package-path }} | sed 's#/#-#')
+          TARGET=$(echo ${{ inputs['package-path'] }} | sed 's#/#-#')
           echo "TARGET=$TARGET" >> "$GITHUB_OUTPUT"
 
   main:
@@ -61,8 +64,8 @@ jobs:
       sbpf-program-packages: "program"
       solana-cli-version: ${{ needs.set_env.outputs.SOLANA_CLI_VERSION }}
       target: ${{ needs.set_env.outputs.TARGET }}
-      package-path: ${{ inputs.package-path }}
+      package-path: ${{ inputs['package-path'] }}
       level: ${{ inputs.level }}
       tag: ${{ inputs.tag }}
-      create-release: ${{ inputs.create-release }}
+      create-release: ${{ inputs['create-release'] }}
     secrets: inherit

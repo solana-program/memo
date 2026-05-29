@@ -6,7 +6,7 @@ on:
       package-path:
         description: Path to directory with package to release
         required: true
-        default: 'clients/cli'
+        default: 'clients/rust'
         type: choice
         options:
           - clients/rust
@@ -52,7 +52,10 @@ jobs:
       TARGET: ${{ steps.compute.outputs.TARGET }}
     steps:
       - name: Git Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Summarise workflow inputs
+        uses: solana-program/actions/workflow-inputs@v1
 
       - name: Compute variables
         id: compute
@@ -60,7 +63,7 @@ jobs:
         run: |
           echo "RUST_TOOLCHAIN_NIGHTLY=$(make rust-toolchain-nightly)" >> "$GITHUB_OUTPUT"
           echo "SOLANA_CLI_VERSION=$(make solana-cli-version)" >> "$GITHUB_OUTPUT"
-          TARGET=$(echo ${{ inputs.package-path }} | sed 's#/#-#')
+          TARGET=$(echo ${{ inputs['package-path'] }} | sed 's#/#-#')
           echo "TARGET=$TARGET" >> "$GITHUB_OUTPUT"
 
   main:
@@ -72,9 +75,9 @@ jobs:
       clippy-toolchain: ${{ needs.set_env.outputs.RUST_TOOLCHAIN_NIGHTLY }}
       rustfmt-toolchain: ${{ needs.set_env.outputs.RUST_TOOLCHAIN_NIGHTLY }}
       target: ${{ needs.set_env.outputs.TARGET }}
-      package-path: ${{ inputs.package-path }}
+      package-path: ${{ inputs['package-path'] }}
       level: ${{ inputs.level }}
       version: ${{ inputs.version }}
-      create-release: ${{ inputs.create-release }}
-      dry-run: ${{ inputs.dry-run }}
+      create-release: ${{ inputs['create-release'] }}
+      dry-run: ${{ inputs['dry-run'] }}
     secrets: inherit
