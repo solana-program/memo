@@ -1,5 +1,5 @@
-RUST_TOOLCHAIN_NIGHTLY = nightly-2026-01-22
-SOLANA_CLI_VERSION = 3.1.8
+RUST_TOOLCHAIN_NIGHTLY = $(shell toml get ./Cargo.toml workspace.metadata.toolchains.nightly)
+SOLANA_CLI_VERSION = $(shell toml get ./Cargo.toml workspace.metadata.cli.solana)
 
 nightly = +${RUST_TOOLCHAIN_NIGHTLY}
 
@@ -21,25 +21,24 @@ cargo-nightly:
 	cargo $(nightly) $(ARGS)
 
 audit:
-	cargo audit \
-			--ignore RUSTSEC-2022-0093 \
-			--ignore RUSTSEC-2024-0421 \
-			--ignore RUSTSEC-2024-0344 \
-			--ignore RUSTSEC-2024-0376 $(ARGS)
+	cargo audit $(ARGS)
 
 spellcheck:
 	cargo spellcheck --code 1 $(ARGS)
 
 clippy-%:
 	cargo $(nightly) clippy --manifest-path $(call make-path,$*)/Cargo.toml \
-	  --all-targets \
-	  --all-features \
+		--all-targets \
+		--all-features \
 		-- \
 		--deny=warnings \
 		--deny=clippy::default_trait_access \
 		--deny=clippy::arithmetic_side_effects \
 		--deny=clippy::manual_let_else \
 		--deny=clippy::used_underscore_binding $(ARGS)
+
+format-check-js-%:
+	cd $(call make-path,$*) && pnpm install && pnpm format $(ARGS)
 
 format-check-%:
 	cargo $(nightly) fmt --check --manifest-path $(call make-path,$*)/Cargo.toml $(ARGS)
@@ -74,12 +73,6 @@ build-doc-%:
 test-doc-%:
 	cargo $(nightly) test --doc --all-features --manifest-path $(call make-path,$*)/Cargo.toml $(ARGS)
 
-test-%:
-	SBF_OUT_DIR=$(PWD)/target/deploy cargo $(nightly) test --manifest-path $(call make-path,$*)/Cargo.toml $(ARGS)
-
-format-check-js-%:
-	cd $(call make-path,$*) && pnpm install && pnpm format $(ARGS)
-
 lint-js-%:
 	cd $(call make-path,$*) && pnpm install && pnpm lint $(ARGS)
 
@@ -93,6 +86,9 @@ test-js-%:
 	make restart-test-validator
 	cd $(call make-path,$*) && pnpm install && pnpm build && pnpm test $(ARGS)
 	make stop-test-validator
+
+test-%:
+	SBF_OUT_DIR=$(PWD)/target/deploy cargo $(nightly) test --manifest-path $(call make-path,$*)/Cargo.toml $(ARGS)
 
 restart-test-validator:
 	./scripts/restart-test-validator.sh

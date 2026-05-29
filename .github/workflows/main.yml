@@ -25,7 +25,10 @@ jobs:
       SOLANA_CLI_VERSION: ${{ steps.compute.outputs.SOLANA_CLI_VERSION }}
     steps:
       - name: Git Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Setup Environment
+        uses: solana-program/actions/setup-ubuntu@main
 
       - name: Compute variables
         id: compute
