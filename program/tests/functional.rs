@@ -1,3 +1,4 @@
+#![allow(deprecated)]
 use {
     mollusk_svm::{result::Check, Mollusk},
     solana_account::Account,
