@@ -1,20 +1,18 @@
-#![deprecated(
-    since = "6.1.0",
-    note = "Please use `spl-memo-interface` for instruction types, and `pinocchio-memo-program` for the program implementation"
-)]
-#![deny(missing_docs)]
+//! A pinocchio-based Memo (aka 'p-memo') program.
+//!
+//! The Memo program is a simple program that validates a string of UTF-8 encoded
+//! characters and verifies that any accounts provided are signers of the transaction.
+//! The program also logs the memo, as well as any verified signer addresses, to the
+//! transaction log, so that anyone can easily observe memos and know they were
+//! approved by zero or more addresses by inspecting the transaction log from a
+//! trusted provider.
 
-//! A program that accepts a string of encoded characters and verifies that it
-//! parses, while verifying and logging signers. Currently handles UTF-8
-//! characters.
-//!
-//! `⚠️ DEPRECATED`
-//!
-//! This crate has been deprecated and is no longer actively maintained.
-//!
-//! Please use [spl-memo-interface](https://crates.io/crates/spl-memo-interface) for
-//! instruction types, and [pinocchio-memo-program](https://crates.io/crates/pinocchio-memo-program)
-//! for the program implementation.
+#![no_std]
+
+use {
+    crate::entrypoint::process_instruction,
+    pinocchio::{lazy_program_entrypoint, no_allocator, nostd_panic_handler},
+};
 
 mod entrypoint;
 
