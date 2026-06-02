@@ -2,16 +2,16 @@
 use {
     mollusk_svm::{result::Check, Mollusk},
     solana_account::Account,
-    solana_instruction::{AccountMeta, Instruction},
+    solana_instruction::{error::InstructionError, AccountMeta, Instruction},
     solana_program_error::ProgramError,
     solana_pubkey::Pubkey,
-    spl_memo::*,
+    spl_memo_interface::{instruction::build_memo, v4::id},
 };
 
 #[test]
 fn test_memo_signing() {
     let memo = "🐆".as_bytes();
-    let mollusk = Mollusk::new(&id(), "spl_memo");
+    let mollusk = Mollusk::new(&id(), "pinocchio_memo_program");
 
     let first_address = Pubkey::new_unique();
     let second_address = Pubkey::new_unique();
@@ -21,7 +21,7 @@ fn test_memo_signing() {
     // Test complete signing
     let signer_key_refs: Vec<&Pubkey> = pubkeys.iter().collect();
     mollusk.process_and_validate_instruction(
-        &build_memo(memo, &signer_key_refs),
+        &build_memo(&id(), memo, &signer_key_refs),
         &[
             (first_address, Account::default()),
             (second_address, Account::default()),
@@ -31,7 +31,11 @@ fn test_memo_signing() {
     );
 
     // Test unsigned memo
-    mollusk.process_and_validate_instruction(&build_memo(memo, &[]), &[], &[Check::success()]);
+    mollusk.process_and_validate_instruction(
+        &build_memo(&id(), memo, &[]),
+        &[],
+        &[Check::success()],
+    );
 
     // Test missing signer(s)
     mollusk.process_and_validate_instruction(
@@ -73,15 +77,17 @@ fn test_memo_signing() {
     // Test invalid utf-8; demonstrate log
     let invalid_utf8 = [0xF0, 0x9F, 0x90, 0x86, 0xF0, 0x9F, 0xFF, 0x86];
     mollusk.process_and_validate_instruction(
-        &build_memo(&invalid_utf8, &[]),
+        &build_memo(&id(), &invalid_utf8, &[]),
         &[],
-        &[Check::err(ProgramError::InvalidInstructionData)],
+        &[Check::instruction_err(
+            InstructionError::ProgramFailedToComplete,
+        )],
     );
 }
 
 #[test]
 fn test_memo_compute_limits() {
-    let mollusk = Mollusk::new(&id(), "spl_memo");
+    let mollusk = Mollusk::new(&id(), "pinocchio_memo_program");
 
     // Test memo length
     let mut memo = vec![];
@@ -91,15 +97,15 @@ fn test_memo_compute_limits() {
     }
 
     mollusk.process_and_validate_instruction(
-        &build_memo(&memo[..450], &[]),
+        &build_memo(&id(), &memo[..450], &[]),
         &[],
         &[Check::success()],
     );
 
     mollusk.process_and_validate_instruction(
-        &build_memo(&memo[..600], &[]),
+        &build_memo(&id(), &memo[..600], &[]),
         &[],
-        &[Check::success(), Check::compute_units(8_503)],
+        &[Check::success(), Check::compute_units(800)],
     );
 
     let mut memo = vec![];
@@ -109,15 +115,15 @@ fn test_memo_compute_limits() {
     }
 
     mollusk.process_and_validate_instruction(
-        &build_memo(&memo[..60], &[]),
+        &build_memo(&id(), &memo[..60], &[]),
         &[],
         &[Check::success()],
     );
 
     mollusk.process_and_validate_instruction(
-        &build_memo(&memo[..63], &[]),
+        &build_memo(&id(), &memo[..63], &[]),
         &[],
-        &[Check::success(), Check::compute_units(62_887)],
+        &[Check::success(), Check::compute_units(287)],
     );
 
     // Test num signers with 32-byte memo
@@ -129,7 +135,7 @@ fn test_memo_compute_limits() {
     let signer_key_refs: Vec<&Pubkey> = pubkeys.iter().collect();
 
     mollusk.process_and_validate_instruction(
-        &build_memo(&memo, &signer_key_refs[..12]),
+        &build_memo(&id(), &memo, &signer_key_refs[..12]),
         pubkeys
             .iter()
             .take(12)
@@ -140,13 +146,13 @@ fn test_memo_compute_limits() {
     );
 
     mollusk.process_and_validate_instruction(
-        &build_memo(&memo, &signer_key_refs[..15]),
+        &build_memo(&id(), &memo, &signer_key_refs[..15]),
         pubkeys
             .iter()
             .take(15)
             .map(|k| (*k, Account::default()))
             .collect::<Vec<_>>()
             .as_slice(),
-        &[Check::success(), Check::compute_units(31_788)],
+        &[Check::success(), Check::compute_units(2123)],
     );
 }

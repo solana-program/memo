@@ -1494,6 +1494,7 @@ dependencies = [
  "solana-program-error",
  "solana-program-log",
  "solana-pubkey 4.2.0",
+ "spl-memo-interface",
 ]
 
 [[package]]
@@ -2821,21 +2822,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "32f0cbfc37c8bc4f36b42e54a4728fe8d43f9801c723cd4a9b541b6455438ea6"
 dependencies = [
  "borsh",
-]
-
-[[package]]
-name = "spl-memo"
-version = "7.0.0"
-dependencies = [
- "mollusk-svm",
- "solana-account",
- "solana-account-info",
- "solana-instruction",
- "solana-msg",
- "solana-program-entrypoint",
- "solana-program-error",
- "solana-pubkey 4.2.0",
- "spl-memo-interface",
 ]
 
 [[package]]

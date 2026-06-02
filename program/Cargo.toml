@@ -1,36 +1,31 @@
 [package]
-name = "spl-memo"
-version = "7.0.0"
-description = "Solana Program Library Memo"
+name = "pinocchio-memo-program"
+version = "1.0.0"
+description = "A pinocchio-based Memo program"
 authors = ["Anza Maintainers <maintainers@anza.xyz>"]
 repository = "https://github.com/solana-program/memo"
 license = "Apache-2.0"
 edition = "2021"
-
-[features]
-no-entrypoint = []
-
-[dependencies]
-solana-account-info = "3.1.1"
-solana-instruction = "3.4.0"
-solana-msg = "3.1.0"
-solana-program-entrypoint = "3.1.1"
-solana-program-error = "3.0.1"
-solana-pubkey = "4.2.0"
-spl-memo-interface = { version = "2.0.0", path = "../interface" }
-
-[dev-dependencies]
-mollusk-svm = "0.12.0"
-solana-account = "3.4.0"
+readme = "./README.md"
 
 [lib]
-crate-type = ["cdylib", "lib"]
-
-[lints]
-workspace = true
-
-[package.metadata.docs.rs]
-targets = ["x86_64-unknown-linux-gnu"]
+crate-type = ["cdylib"]
 
 [package.metadata.solana]
-program-id = "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr"
+program-id = "Memo4c2pN8afCj432Lb7RMVKi9PbQnnW7ewFFaV3oAH"
+
+[lints.rust.unexpected_cfgs]
+level = "warn"
+check-cfg = ['cfg(target_os, values("solana"))']
+
+[dependencies]
+pinocchio = { version = "0.11", default-features = false }
+solana-program-log = "1.2"
+
+[dev-dependencies]
+mollusk-svm = "0.12"
+solana-account = "3.4.0"
+solana-instruction = "3.4.0"
+solana-program-error = "3.0.1"
+solana-pubkey = "4.2.0"
+spl-memo-interface = { path = "../interface" }

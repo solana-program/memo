@@ -11,7 +11,6 @@ on:
         options:
           - clients/rust
           - interface
-          - pinocchio
           - program
       level:
         description: Level
@@ -73,7 +72,7 @@ jobs:
     needs: set_env
     uses: solana-program/actions/.github/workflows/publish-rust.yml@main
     with:
-      sbpf-program-packages: "program pinocchio"
+      sbpf-program-packages: "program"
       solana-cli-version: ${{ needs.set_env.outputs.SOLANA_CLI_VERSION }}
       clippy-toolchain: ${{ needs.set_env.outputs.RUST_TOOLCHAIN_NIGHTLY }}
       rustfmt-toolchain: ${{ needs.set_env.outputs.RUST_TOOLCHAIN_NIGHTLY }}
