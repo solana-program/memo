@@ -22,5 +22,7 @@ it('adds custom text to the transaction logs', async () => {
     // And the on-chain transaction logs include the memo text.
     const tx = client.svm.getTransaction(signature) as { logs: () => string[] } | null;
     expect(tx).not.toBeNull();
-    expect(tx!.logs()).toEqual(expect.arrayContaining([expect.stringContaining('Memo (len 12): "Hello world!"')]));
+    expect(tx!.logs()).toEqual(
+        expect.arrayContaining([expect.stringContaining('Memo (len 12)'), expect.stringContaining('Hello world!')]),
+    );
 });

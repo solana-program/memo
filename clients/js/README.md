@@ -10,7 +10,7 @@ The JS client tests use [LiteSVM](https://github.com/LiteSVM/litesvm) in-process
 make test-js-clients-js
 ```
 
-This installs dependencies, builds the client, and runs the test suite. The memo program is loaded into LiteSVM from the `.so` artifact that CI's `build-sbf-program` job (or your local `make build-sbf-program`) emits to `target/deploy/spl_memo.so`.
+This installs dependencies, builds the client, and runs the test suite. The memo program is loaded into LiteSVM from the `.so` artifact that CI's `build-sbf-program` job (or your local `make build-sbf-program`) emits to `target/deploy/pinocchio_memo_program.so`.
 
 ## Available client scripts
 

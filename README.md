@@ -54,17 +54,15 @@ The following clients are available for the Memo program. You may use the follow
 - [JS legacy client](./clients/js-legacy)
 - [Rust client](./clients/rust)
 
-## Building and testing the on-chain programs
+## Building and testing the on-chain program
 
-The `program` and `pinocchio` folders each contain an on-chain Memo program. Build the SBF artifacts and run their tests with:
+The `program` folder contains the Pinocchio-based Memo v4 implementation. Build the SBF artifact and run its tests with:
 
 ```sh
-make build-sbf-program        # builds spl_memo.so into target/deploy/
-make build-sbf-pinocchio      # builds p_memo.so into target/deploy/
+make build-sbf-program        # builds pinocchio_memo_program.so into target/deploy/
 make test-program             # runs the program crate's tests
-make test-pinocchio           # runs the pinocchio crate's tests
 ```
 
-The JS client tests (`make test-js-clients-js`) pick up `target/deploy/spl_memo.so` via LiteSVM, so building the program first is a prerequisite for running them locally.
+The JS client tests (`make test-js-clients-js`) pick up `target/deploy/pinocchio_memo_program.so` via LiteSVM, so building the program first is a prerequisite for running them locally.
 
 The `clients-js-legacy` package's tests run against a live local validator. `make test-js-clients-js-legacy` starts one via `scripts/restart-test-validator.sh`, runs the tests, then stops it. You can also restart and stop the validator independently with `make restart-test-validator` and `make stop-test-validator`.
