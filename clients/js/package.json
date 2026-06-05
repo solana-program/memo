@@ -39,8 +39,8 @@
         "test": "vitest run",
         "lint": "oxlint",
         "lint:fix": "oxlint --fix",
-        "format": "oxfmt --check",
-        "format:fix": "oxfmt",
+        "format": "oxfmt -c oxfmt.config.mts --check",
+        "format:fix": "oxfmt -c oxfmt.config.mts",
         "prepublishOnly": "pnpm build"
     },
     "devDependencies": {
