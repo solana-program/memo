@@ -2179,6 +2179,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "solana-instruction-view"
+version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6ab7a27d0c4214b9f7389c3dd00b68c93093a67f1dcc5b7893aebe299bbcbb47"
+dependencies = [
+ "solana-account-view",
+ "solana-address 2.6.0",
+ "solana-define-syscall 5.1.0",
+ "solana-program-error",
+]
+
+[[package]]
 name = "solana-instructions-sysvar"
 version = "3.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2844,8 +2856,11 @@ dependencies = [
 name = "spl-memo-interface"
 version = "2.1.0"
 dependencies = [
+ "solana-account-view",
+ "solana-address 2.6.0",
  "solana-instruction",
- "solana-pubkey 4.2.0",
+ "solana-instruction-view",
+ "solana-program-error",
 ]
 
 [[package]]
