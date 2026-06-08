@@ -1,5 +1,7 @@
-use solana_address::Address;
-use solana_instruction::{AccountMeta, Instruction};
+use {
+    solana_address::Address,
+    solana_instruction::{AccountMeta, Instruction},
+};
 
 /// Build a memo instruction, possibly signed.
 ///
