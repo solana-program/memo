@@ -18,6 +18,9 @@ solana-instruction = { version = "3.4.0", optional = true }
 solana-instruction-view = { version = "2.1", features = ["cpi"], optional = true }
 solana-program-error = { version = "3.0", optional = true }
 
+[dev-dependencies]
+solana-address = { version = "2.6", features = ["atomic"] }
+
 [lib]
 crate-type = ["lib"]
 
