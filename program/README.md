@@ -54,4 +54,4 @@ SBF_OUT_DIR=../target/deploy cargo test
 
 ## License
 
-The code is licensed under the [Apache License Version 2.0](LICENSE)
+The code is licensed under the [Apache License Version 2.0](../LICENSE)
