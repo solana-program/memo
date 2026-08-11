@@ -13,8 +13,7 @@
             "kind": "instructionArgumentNode",
             "name": "memo",
             "type": { "kind": "stringTypeNode", "encoding": "utf8" },
-            "docs": [],
-            "display": { "kind": "structFieldDisplayNode", "label": "Memo" }
+            "docs": []
           }
         ],
         "remainingAccounts": [
