@@ -3,7 +3,11 @@
     "description": "SPL Memo Program JS API",
     "version": "0.2.4",
     "author": "Solana Labs Maintainers <maintainers@solanalabs.com>",
-    "repository": "https://github.com/solana-labs/solana-program-library",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/solana-program/memo.git",
+        "directory": "clients/js-legacy"
+    },
     "license": "Apache-2.0",
     "type": "module",
     "sideEffects": false,
