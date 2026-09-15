@@ -7,7 +7,7 @@ cd "${src_root}"
 ARGS=(
   -r
   -q
-  --bpf-program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr ./target/deploy/pinocchio_memo_program.so
+  --bpf-program Memo4c2pN8afCj432Lb7RMVKi9PbQnnW7ewFFaV3oAH ./target/deploy/pinocchio_memo_program.so
 )
 PORT=8899
 PID=$(lsof -t -i:$PORT)

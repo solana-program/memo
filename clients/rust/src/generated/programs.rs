@@ -8,4 +8,4 @@
 use solana_address::{address, Address};
 
 /// `memo` program ID.
-pub const MEMO_ID: Address = address!("MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr");
+pub const MEMO_ID: Address = address!("Memo4c2pN8afCj432Lb7RMVKi9PbQnnW7ewFFaV3oAH");

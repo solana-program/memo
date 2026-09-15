@@ -17,13 +17,13 @@ import { addSelfPlanAndSendFunctions, type SelfPlanAndSendFunctions } from '@sol
 import { getAddMemoInstruction, type AddMemoInput, type ParsedAddMemoInstruction } from '../instructions';
 
 export const MEMO_PROGRAM_ADDRESS =
-    'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr' as Address<'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'>;
+    'Memo4c2pN8afCj432Lb7RMVKi9PbQnnW7ewFFaV3oAH' as Address<'Memo4c2pN8afCj432Lb7RMVKi9PbQnnW7ewFFaV3oAH'>;
 
 export enum MemoInstruction {
     AddMemo,
 }
 
-export type ParsedMemoInstruction<TProgram extends string = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr'> = {
+export type ParsedMemoInstruction<TProgram extends string = 'Memo4c2pN8afCj432Lb7RMVKi9PbQnnW7ewFFaV3oAH'> = {
     instructionType: MemoInstruction.AddMemo;
 } & ParsedAddMemoInstruction<TProgram>;
 
