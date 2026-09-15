@@ -1,7 +1,7 @@
 {
     "name": "@solana/spl-memo",
     "description": "SPL Memo Program JS API",
-    "version": "0.2.4",
+    "version": "0.3.0",
     "author": "Solana Labs Maintainers <maintainers@solanalabs.com>",
     "repository": {
         "type": "git",
