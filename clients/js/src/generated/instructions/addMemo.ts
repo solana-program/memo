@@ -7,7 +7,6 @@
  */
 
 import {
-    AccountRole,
     combineCodec,
     getStructDecoder,
     getStructEncoder,
@@ -22,8 +21,12 @@ import {
     type InstructionWithAccounts,
     type InstructionWithData,
     type ReadonlyUint8Array,
-    type TransactionSigner,
 } from '@solana/kit';
+import {
+    getAccountMetaFactory,
+    getNonNullResolvedInstructionInput,
+    type InstructionSignerInput,
+} from '@solana/kit/program-client-core';
 import { MEMO_PROGRAM_ADDRESS } from '../programs';
 
 export type AddMemoInstruction<
@@ -49,7 +52,7 @@ export function getAddMemoInstructionDataCodec(): Codec<AddMemoInstructionDataAr
 
 export type AddMemoInput = {
     memo: AddMemoInstructionDataArgs['memo'];
-    signers?: Array<TransactionSigner>;
+    signers?: Array<InstructionSignerInput>;
 };
 
 export function getAddMemoInstruction<TProgramAddress extends Address = typeof MEMO_PROGRAM_ADDRESS>(
@@ -59,15 +62,19 @@ export function getAddMemoInstruction<TProgramAddress extends Address = typeof M
     // Program address.
     const programAddress = config?.programAddress ?? MEMO_PROGRAM_ADDRESS;
 
+    // Account meta helper.
+    const getAccountMeta = getAccountMetaFactory(programAddress, 'programId');
+
     // Original args.
     const args = { ...input };
 
     // Remaining accounts.
-    const remainingAccounts: AccountMeta[] = (args.signers ?? []).map(signer => ({
-        address: signer.address,
-        role: AccountRole.READONLY_SIGNER,
-        signer,
-    }));
+    const remainingAccounts: AccountMeta[] = (args.signers ?? []).map(value =>
+        getNonNullResolvedInstructionInput(
+            'signers',
+            getAccountMeta('signers', { value, isSigner: true, isWritable: false }),
+        ),
+    );
 
     return Object.freeze({
         accounts: remainingAccounts,
