@@ -5,12 +5,12 @@ use {
     solana_instruction::{error::InstructionError, AccountMeta, Instruction},
     solana_program_error::ProgramError,
     solana_pubkey::Pubkey,
-    spl_memo_interface::{instruction::build_memo, v4::id},
+    spl_memo_interface::{instruction::memo, v4::id},
 };
 
 #[test]
 fn test_memo_signing() {
-    let memo = "🐆".as_bytes();
+    let message = "🐆".as_bytes();
     let mollusk = Mollusk::new(&id(), "pinocchio_memo_program");
 
     let first_address = Pubkey::new_unique();
@@ -21,7 +21,7 @@ fn test_memo_signing() {
     // Test complete signing
     let signer_key_refs: Vec<&Pubkey> = pubkeys.iter().collect();
     mollusk.process_and_validate_instruction(
-        &build_memo(&id(), memo, &signer_key_refs),
+        &memo(&id(), message, &signer_key_refs),
         &[
             (first_address, Account::default()),
             (second_address, Account::default()),
@@ -31,11 +31,7 @@ fn test_memo_signing() {
     );
 
     // Test unsigned memo
-    mollusk.process_and_validate_instruction(
-        &build_memo(&id(), memo, &[]),
-        &[],
-        &[Check::success()],
-    );
+    mollusk.process_and_validate_instruction(&memo(&id(), message, &[]), &[], &[Check::success()]);
 
     // Test missing signer(s)
     mollusk.process_and_validate_instruction(
@@ -46,7 +42,7 @@ fn test_memo_signing() {
                 AccountMeta::new_readonly(second_address, false),
                 AccountMeta::new_readonly(third_address, true),
             ],
-            data: memo.to_vec(),
+            data: message.to_vec(),
         },
         &[
             (first_address, Account::default()),
@@ -64,7 +60,7 @@ fn test_memo_signing() {
                 AccountMeta::new_readonly(second_address, false),
                 AccountMeta::new_readonly(third_address, false),
             ],
-            data: memo.to_vec(),
+            data: message.to_vec(),
         },
         &[
             (first_address, Account::default()),
@@ -77,7 +73,7 @@ fn test_memo_signing() {
     // Test invalid utf-8; demonstrate log
     let invalid_utf8 = [0xF0, 0x9F, 0x90, 0x86, 0xF0, 0x9F, 0xFF, 0x86];
     mollusk.process_and_validate_instruction(
-        &build_memo(&id(), &invalid_utf8, &[]),
+        &memo(&id(), &invalid_utf8, &[]),
         &[],
         &[Check::instruction_err(
             InstructionError::ProgramFailedToComplete,
@@ -90,44 +86,44 @@ fn test_memo_compute_limits() {
     let mollusk = Mollusk::new(&id(), "pinocchio_memo_program");
 
     // Test memo length
-    let mut memo = vec![];
+    let mut message = vec![];
     for _ in 0..1000 {
         let mut vec = vec![0x53, 0x4F, 0x4C];
-        memo.append(&mut vec);
+        message.append(&mut vec);
     }
 
     mollusk.process_and_validate_instruction(
-        &build_memo(&id(), &memo[..450], &[]),
+        &memo(&id(), &message[..450], &[]),
         &[],
         &[Check::success()],
     );
 
     mollusk.process_and_validate_instruction(
-        &build_memo(&id(), &memo[..600], &[]),
+        &memo(&id(), &message[..600], &[]),
         &[],
         &[Check::success(), Check::compute_units(800)],
     );
 
-    let mut memo = vec![];
+    let mut message = vec![];
     for _ in 0..100 {
         let mut vec = vec![0xE2, 0x97, 0x8E];
-        memo.append(&mut vec);
+        message.append(&mut vec);
     }
 
     mollusk.process_and_validate_instruction(
-        &build_memo(&id(), &memo[..60], &[]),
+        &memo(&id(), &message[..60], &[]),
         &[],
         &[Check::success()],
     );
 
     mollusk.process_and_validate_instruction(
-        &build_memo(&id(), &memo[..63], &[]),
+        &memo(&id(), &message[..63], &[]),
         &[],
         &[Check::success(), Check::compute_units(287)],
     );
 
     // Test num signers with 32-byte memo
-    let memo = [b'1'; 32];
+    let message = [b'1'; 32];
     let mut pubkeys = vec![];
     for _ in 0..20 {
         pubkeys.push(Pubkey::new_unique());
@@ -135,7 +131,7 @@ fn test_memo_compute_limits() {
     let signer_key_refs: Vec<&Pubkey> = pubkeys.iter().collect();
 
     mollusk.process_and_validate_instruction(
-        &build_memo(&id(), &memo, &signer_key_refs[..12]),
+        &memo(&id(), &message, &signer_key_refs[..12]),
         pubkeys
             .iter()
             .take(12)
@@ -146,7 +142,7 @@ fn test_memo_compute_limits() {
     );
 
     mollusk.process_and_validate_instruction(
-        &build_memo(&id(), &memo, &signer_key_refs[..15]),
+        &memo(&id(), &message, &signer_key_refs[..15]),
         pubkeys
             .iter()
             .take(15)
