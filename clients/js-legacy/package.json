@@ -39,6 +39,7 @@
         "postbuild": "shx echo '{ \"type\": \"commonjs\" }' > lib/cjs/package.json",
         "watch": "tsc --build --verbose --watch tsconfig.all.json",
         "release": "npm run clean && npm run build",
+        "prepublishOnly": "pnpm build",
         "lint": "oxlint --max-warnings 0",
         "lint:fix": "oxlint --fix",
         "format": "oxfmt --check src test",
