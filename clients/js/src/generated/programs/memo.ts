@@ -12,6 +12,7 @@ import {
     type ClientWithTransactionPlanning,
     type ClientWithTransactionSending,
     type ExtendedClient,
+    type HasAddress,
 } from '@solana/kit';
 import { addSelfPlanAndSendFunctions, type SelfPlanAndSendFunctions } from '@solana/kit/program-client-core';
 import { getAddMemoInstruction, type AddMemoInput, type ParsedAddMemoInstruction } from '../instructions';
@@ -30,16 +31,27 @@ export type ParsedMemoInstruction<TProgram extends string = 'Memo4c2pN8afCj432Lb
 export type MemoPlugin = { instructions: MemoPluginInstructions };
 
 export type MemoPluginInstructions = {
-    addMemo: (input: AddMemoInput) => ReturnType<typeof getAddMemoInstruction> & SelfPlanAndSendFunctions;
+    addMemo: (
+        input: AddMemoInput,
+        config?: { programAddress?: Address | HasAddress },
+    ) => ReturnType<typeof getAddMemoInstruction> & SelfPlanAndSendFunctions;
 };
 
 export type MemoPluginRequirements = ClientWithTransactionPlanning & ClientWithTransactionSending;
 
-export function memoProgram() {
+export function memoProgram(config: { programAddress?: Address | HasAddress } = {}) {
     return <T extends MemoPluginRequirements>(client: T): ExtendedClient<T, { memo: MemoPlugin }> => {
         return extendClient(client, {
             memo: <MemoPlugin>{
-                instructions: { addMemo: input => addSelfPlanAndSendFunctions(client, getAddMemoInstruction(input)) },
+                instructions: {
+                    addMemo: (input, instructionConfig) =>
+                        addSelfPlanAndSendFunctions(
+                            client,
+                            getAddMemoInstruction(input, {
+                                programAddress: instructionConfig?.programAddress ?? config.programAddress,
+                            }),
+                        ),
+                },
             },
         });
     };
