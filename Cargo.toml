@@ -10,13 +10,13 @@ check-cfg = [
 ]
 
 [workspace.metadata.cli]
-solana = "3.1.8"
+solana = "4.3.0"
 
 [workspace.metadata.spellcheck]
 config = "scripts/spellcheck.toml"
 
 [workspace.metadata.toolchains]
-nightly = "nightly-2026-01-22"
+nightly = "nightly-2026-07-16"
 
 [workspace.metadata.release]
 pre-release-commit-message = "Publish {{crate_name}} v{{version}}"
