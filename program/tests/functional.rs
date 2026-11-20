@@ -2,7 +2,8 @@
 use {
     mollusk_svm::{result::Check, Mollusk},
     solana_account::Account,
-    solana_instruction::{error::InstructionError, AccountMeta, Instruction},
+    solana_instruction::{AccountMeta, Instruction},
+    solana_instruction_error::InstructionError,
     solana_program_error::ProgramError,
     solana_pubkey::Pubkey,
     spl_memo_interface::{instruction::build_memo, v4::id},
