@@ -43,8 +43,7 @@ pub fn process_instruction(mut context: InstructionContext) -> ProgramResult {
         }
     }
 
-    // SAFETY: All accounts have been processed.
-    let instruction_data = unsafe { context.instruction_data_unchecked() };
+    let instruction_data = context.instruction_data();
 
     // Logs the length of the memo message and its content.
     log!("Memo (len {})", instruction_data.len());
