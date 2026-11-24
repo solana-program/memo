@@ -31,9 +31,11 @@ export const LEGACY_MEMO_PROGRAM_ADDRESS_V3 =
  *
  * @example
  * ```ts
+ * import { type Address } from '@solana/kit';
  * import { SUPPORTED_MEMO_PROGRAM_ADDRESSES } from '@solana-program/memo';
  *
- * const isMemoInstruction = SUPPORTED_MEMO_PROGRAM_ADDRESSES.includes(instruction.programAddress);
+ * const supportedAddresses: readonly Address[] = SUPPORTED_MEMO_PROGRAM_ADDRESSES;
+ * const isMemoInstruction = supportedAddresses.includes(instruction.programAddress);
  * ```
  */
 export const SUPPORTED_MEMO_PROGRAM_ADDRESSES = Object.freeze([
