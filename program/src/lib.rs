@@ -11,13 +11,13 @@
 
 use {
     crate::entrypoint::process_instruction,
-    pinocchio::{lazy_program_entrypoint, no_allocator, nostd_panic_handler},
+    pinocchio::{no_allocator, nostd_panic_handler, program_entrypoint_with_r2},
 };
 
 mod entrypoint;
 
 // Process the input lazily.
-lazy_program_entrypoint!(process_instruction);
+program_entrypoint_with_r2!(process_instruction);
 // Disable the memory allocator.
 no_allocator!();
 // Use a `no_std` panic handler.

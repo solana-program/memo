@@ -1,9 +1,5 @@
 use {
-    pinocchio::{
-        entrypoint::{InstructionContext, MaybeAccount},
-        error::ProgramError,
-        ProgramResult,
-    },
+    pinocchio::{error::ProgramError, AccountView, Address, ProgramResult},
     solana_program_log::log,
 };
 
@@ -13,28 +9,27 @@ use {
 /// (if any) and the memo data itself, checking if the required signatures are present;
 /// when any required signature is missing, it returns `ProgramError::MissingRequiredSignature`
 /// error.
-pub fn process_instruction(mut context: InstructionContext) -> ProgramResult {
-    let mut missing_required_signature = false;
-
+pub fn process_instruction(
+    _program_id: &Address,
+    accounts: &mut [AccountView],
+    instruction_data: &[u8],
+) -> ProgramResult {
     // Validates signer accounts (if any).
 
-    if context.remaining() > 0 {
+    if !accounts.is_empty() {
+        let mut missing_required_signature = false;
         // Logs a message indicating that there are signers.
         log!("Signed by:");
 
-        while context.remaining() > 0 {
-            // Duplicated accounts are implicitly checked since at least one of the
-            // "copies" must be a signer.
-            if let MaybeAccount::Account(account) = context.next_account()? {
-                if account.is_signer() {
-                    // SAFETY: Use the syscall to log the public key of the account.
-                    #[cfg(any(target_os = "solana", target_arch = "bpf"))]
-                    unsafe {
-                        pinocchio::syscalls::sol_log_pubkey(account.address().as_array().as_ptr())
-                    };
-                } else {
-                    missing_required_signature = true;
-                }
+        for account in accounts {
+            if account.is_signer() {
+                // SAFETY: Use the syscall to log the public key of the account.
+                #[cfg(any(target_os = "solana", target_arch = "bpf"))]
+                unsafe {
+                    pinocchio::syscalls::sol_log_pubkey(account.address().as_array().as_ptr())
+                };
+            } else {
+                missing_required_signature = true;
             }
         }
 
@@ -42,8 +37,6 @@ pub fn process_instruction(mut context: InstructionContext) -> ProgramResult {
             return Err(ProgramError::MissingRequiredSignature);
         }
     }
-
-    let instruction_data = context.instruction_data();
 
     // Logs the length of the memo message and its content.
     log!("Memo (len {})", instruction_data.len());
